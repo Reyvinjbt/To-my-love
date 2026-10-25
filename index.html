@@ -4,285 +4,353 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Para ti, mi amor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root{
-        --paper:#f5f1ef;
-        --paper-2:#f1eee9;
-        --beige:#e8d5c0;
-        --beige-2:#d3b598;
+        --paper:#f4f1ef;
+        --panel:#e9d7c2;
+        --panel-2:#d8c0a7;
         --brown:#7a5640;
-        --brown-2:#9d7c63;
-        --brown-3:#c7a48d;
+        --brown-dark:#5d4031;
+        --brown-soft:#b98d67;
         --line:rgba(122,86,64,0.75);
-        --shadow:rgba(101,74,58,0.12);
+        --shadow:rgba(122,86,64,0.08);
       }
 
-      *{box-sizing:border-box;margin:0;padding:0}
-      html{scroll-behavior:smooth}
+      *{ box-sizing:border-box; margin:0; padding:0; }
+
+      html{ scroll-behavior:smooth; }
       body{
-        margin:0;
-        background:#efeeeb;
+        background:#efefeb;
         color:var(--brown);
         font-family:"Inter",sans-serif;
       }
+
       a{text-decoration:none}
+
       .page{
         width:100%;
         min-height:100vh;
-        padding:16px 0 36px;
-        background:linear-gradient(#f4f1f0,#ece7e3);
+        background:#efefeb;
       }
-      .frame{
-        width:calc(100% - 26px);
-        max-width:1600px;
-        margin:0 auto;
-        background:rgba(255,255,255,0.18);
-        position:relative;
+
+      .chapter-grid-wrap{
+        background:#f5f2ef;
+        padding:28px 18px 18px;
       }
-      .book-menu{
-        position:sticky;
-        top:0;
-        z-index:1000;
-        background:rgba(245,241,239,0.96);
-        border-bottom:2px solid rgba(122,86,64,0.12);
-        backdrop-filter:blur(8px);
-        -webkit-backdrop-filter:blur(8px);
-        box-shadow:0 10px 28px rgba(122,86,64,0.08);
-      }
-      .book-menu-inner{
-        max-width:1560px;
-        margin:0 auto;
-        padding:18px 18px 20px;
-      }
-      .book-cards{
+
+      .chapter-grid{
         display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-        gap:16px;
+        grid-template-columns:repeat(6, minmax(180px, 1fr));
+        gap:20px;
+        max-width:1500px;
+        margin:0 auto;
       }
-      .book-card{
-        position:relative;
+
+      .chapter-card{
         display:block;
-        min-height:118px;
-        background:linear-gradient(135deg,rgba(233,217,200,0.9),rgba(255,255,255,0.35));
-        border:1px solid rgba(122,86,64,0.15);
+        min-height:230px;
+        background:linear-gradient(180deg, rgba(233,215,194,0.92), rgba(240,230,222,0.78));
+        border:1px solid rgba(122,86,64,0.12);
         border-radius:18px;
-        padding:14px 16px;
-        box-shadow:0 18px 30px rgba(122,86,64,0.08);
-        transition:.22s ease;
+        box-shadow:0 12px 28px rgba(122,86,64,0.07);
+        padding:20px 18px 18px;
+        position:relative;
         overflow:hidden;
+        transition:all .22s ease;
       }
-      .book-card::before,
-      .book-card::after{
+
+      .chapter-card::before, .chapter-card::after{
         content:"";
         position:absolute;
-        top:10px;
-        width:10px;
-        height:calc(100% - 20px);
-        background:rgba(122,86,64,0.18);
-        border-radius:8px;
+        top:12px;
+        width:8px;
+        height:calc(100% - 24px);
+        background:rgba(122,86,64,.14);
+        border-radius:999px;
       }
-      .book-card::before{left:10px}
-      .book-card::after{right:10px}
-      .book-card:hover,
-      .book-card.active{
+      .chapter-card::before{ left:10px; }
+      .chapter-card::after{ right:10px; }
+
+      .chapter-card:hover{
         transform:translateY(-4px);
-        box-shadow:0 22px 36px rgba(122,86,64,0.14);
-        background:linear-gradient(135deg,rgba(230,210,190,0.95),rgba(255,255,255,0.45));
+        box-shadow:0 18px 30px rgba(122,86,64,0.12);
       }
-      .book-card-number{
-        font-size:0.7rem;
-        letter-spacing:0.15em;
+
+      .cap-label{
+        font-size:0.78rem;
+        letter-spacing:0.18em;
         text-transform:uppercase;
-        font-weight:800;
-        color:rgba(122,86,64,0.72);
-        margin-bottom:8px;
+        color:rgba(122,86,64,0.8);
+        font-weight:700;
+        margin-bottom:10px;
       }
-      .book-card-title{
+
+      .cap-title{
         font-family:"Cormorant Garamond",serif;
-        font-size:2rem;
+        font-weight:700;
+        font-size: clamp(2.6rem, 2vw, 4rem);
         line-height:0.9;
-        font-weight:700;
         color:var(--brown);
       }
 
-      .index-box{
-        padding:28px 22px 18px;
-        background:var(--paper);
-      }
-      .index-title{
-        font-family:"Cormorant Garamond",serif;
-        font-size:clamp(2.2rem,5vw,4rem);
-        text-align:center;
-        color:var(--brown);
-        margin-bottom:18px;
-        font-weight:700;
-      }
-      .index-grid{
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-        gap:14px;
-      }
-      .index-card{
-        display:block;
-        background:linear-gradient(135deg,rgba(233,213,188,0.88),rgba(255,255,255,0.35));
-        border:1px solid rgba(122,86,64,0.14);
-        color:var(--brown);
-        border-radius:18px;
-        padding:14px 12px;
-        text-align:center;
-        font-weight:700;
-        transition:.2s ease;
-        box-shadow:0 12px 24px rgba(122,86,64,0.04);
-      }
-      .index-card:hover{
-        transform:translateY(-2px);
-        box-shadow:0 18px 28px rgba(122,86,64,0.08);
-      }
-
-      .slide{
+      .chapter{
         position:relative;
-        min-height:760px;
+        min-height:100vh;
         background:var(--paper);
         overflow:hidden;
-        border-bottom:1px solid rgba(122,86,64,0.08);
+        border-top:1px solid rgba(122,86,64,0.06);
       }
-      .slide:last-child{border-bottom:0}
+
+      .chapter-inner{
+        position:relative;
+        z-index:2;
+        width:min(1500px,92%);
+        min-height:100vh;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+      }
+
+      .chapter-content{
+        width:100%;
+        max-width:1200px;
+      }
+
+      .chapter-content.long{
+        max-width:1350px;
+      }
+
+      .blob, .blob-2, .curve, .curve-2, .semi, .semi-2, .heart, .star{
+        position:absolute;
+        pointer-events:none;
+      }
 
       .blob{
-        position:absolute;
+        left:-80px; top:-80px;
+        width:300px; height:240px;
         background:rgba(163,123,94,0.18);
-        border-radius:60% 40% 50% 50%;
+        border-radius:52% 48% 50% 50%;
       }
-      .blob-left-top{
-        left:-100px;
-        top:-70px;
-        width:320px;
-        height:260px;
-        transform:rotate(-18deg);
-      }
-      .blob-right-bottom{
-        right:-90px;
-        bottom:-110px;
-        width:300px;
-        height:220px;
-        transform:rotate(12deg);
+      .blob-2{
+        right:-100px; bottom:-100px;
+        width:320px; height:230px;
+        background:rgba(163,123,94,0.18);
+        border-radius:60% 40% 56% 44%;
       }
 
       .curve{
-        position:absolute;
-        width:170px;
-        height:80px;
+        right:120px; top:35px;
+        width:180px; height:100px;
+        border-radius:50%;
         border:4px solid var(--brown);
         border-color:transparent transparent var(--brown) transparent;
-        border-radius:50%;
         opacity:.9;
       }
-      .curve.c1{top:18px;right:190px;transform:rotate(8deg)}
-      .curve.c2{top:18px;right:45px;transform:rotate(8deg)}
-      .curve.c3{left:40px;bottom:110px;transform:rotate(8deg)}
-      .curve.c4{right:28px;bottom:120px;transform:rotate(-8deg)}
-      .curve.c5{right:40px;top:110px;transform:rotate(1deg)}
-      .curve.c6{left:32px;bottom:110px;transform:rotate(-8deg)}
-      .curve.c7{right:24px;bottom:110px;transform:rotate(8deg)}
-      .curve.c8{left:40px;top:18px;transform:rotate(10deg)}
-      .curve.c9{left:50%;bottom:30px;width:220px;transform:translateX(-50%) rotate(8deg)}
+      .curve-2{
+        left:80px; bottom:80px;
+        width:200px; height:90px;
+        border-radius:50%;
+        border:4px solid var(--brown);
+        border-color:transparent transparent var(--brown) transparent;
+        opacity:.9;
+      }
 
       .semi{
-        position:absolute;
-        width:90px;
-        height:55px;
+        top:30px; right:260px;
+        width:100px; height:60px;
+        border-radius: 120px 120px 0 0;
         border:4px solid var(--brown);
         border-color:var(--brown) transparent transparent transparent;
-        border-radius:120px 120px 0 0;
         opacity:.9;
       }
-      .semi.s1{top:28px;right:230px;transform:rotate(-12deg)}
-      .semi.s2{top:28px;right:50px;transform:rotate(-12deg)}
-      .semi.s3{left:40px;bottom:60px;transform:rotate(8deg)}
-      .semi.s4{right:52px;bottom:60px;transform:rotate(-8deg)}
+      .semi-2{
+        left:40px; bottom:65px;
+        width:110px; height:60px;
+        border-radius: 120px 120px 0 0;
+        border:4px solid var(--brown);
+        border-color:var(--brown) transparent transparent transparent;
+        opacity:.9;
+      }
 
       .heart{
-        position:absolute;
-        width:38px;
-        height:38px;
-        background:var(--brown-3);
+        width:36px; height:36px;
+        background:var(--brown-soft);
         transform:rotate(-45deg);
         border-radius:8px 0 0 0;
-        opacity:0.92;
+        opacity:.9;
       }
       .heart::before,.heart::after{
         content:"";
         position:absolute;
-        width:38px;
-        height:38px;
-        background:var(--brown-3);
+        width:36px; height:36px;
+        background:var(--brown-soft);
         border-radius:50%;
       }
-      .heart::before{left:0;top:-18px}
-      .heart::after{left:18px;top:0}
-
-      .h1{left:130px;top:100px;transform:rotate(-45deg) scale(1.1)}
-      .h2{left:280px;top:220px;transform:rotate(-45deg) scale(0.9)}
-      .h3{right:130px;top:430px;transform:rotate(-45deg) scale(1)}
-      .h4{left:120px;bottom:90px;transform:rotate(-45deg) scale(0.9)}
-      .h5{right:170px;bottom:90px;transform:rotate(-45deg) scale(0.95)}
-      .h6{left:90px;top:90px;transform:rotate(-45deg) scale(1.1)}
-      .h7{right:120px;top:140px;transform:rotate(-45deg) scale(1.05)}
+      .heart::before{ left:0; top:-18px; }
+      .heart::after{ left:18px; top:0; }
+      .heart.a{ left:120px; top:120px; }
+      .heart.b{ left:260px; top:300px; }
+      .heart.c{ right:150px; top:420px; }
+      .heart.d{ left:120px; bottom:120px; }
+      .heart.e{ right:180px; bottom:110px; }
 
       .star{
-        position:absolute;
-        width:18px;height:18px;
-        background:rgba(122,86,64,0.8);
+        width:18px; height:18px;
+        background:rgba(122,86,64,.8);
         clip-path:polygon(50% 0%,61% 35%,100% 35%,68% 57%,79% 100%,50% 72%,21% 100%,32% 57%,0% 35%,39% 35%);
       }
-      .st1{left:180px;top:430px}
-      .st2{left:260px;top:560px}
-      .st3{right:200px;top:130px}
-      .st4{right:250px;bottom:170px}
-      .st5{left:120px;top:160px}
-      .st6{right:140px;top:100px}
+      .star.s1{ left:200px; top:430px; }
+      .star.s2{ left:280px; top:530px; }
+      .star.s3{ right:200px; top:140px; }
+      .star.s4{ right:260px; bottom:180px; }
 
-      .book-stack{
+      .chapter-title{
+        font-family:"Cormorant Garamond",serif;
+        font-weight:700;
+        text-transform:uppercase;
+        letter-spacing:-0.04em;
+        color:var(--brown);
+        line-height:0.9;
+        margin-bottom:18px;
+      }
+
+      .chapter-title.main{
+        font-size: clamp(3.5rem, 7vw, 11rem);
+        text-align:center;
+      }
+
+      .pizarra{
+        display:inline-block;
+        background:var(--panel);
+        padding:18px 26px;
+        border-radius:16px;
+        box-shadow:0 12px 25px rgba(122,86,64,0.08);
+        margin-top:8px;
+      }
+      .pizarra .pizarra-text{
+        display:block;
+        font-family:"Cormorant Garamond",serif;
+        font-weight:700;
+        font-size:clamp(2rem,2.5vw,3.4rem);
+        color:var(--brown);
+      }
+
+      .text-block{
+        font-family:"Cormorant Garamond",serif;
+        font-size:clamp(1.8rem,2.1vw,3rem);
+        line-height:1.35;
+        color:var(--brown);
+        text-align:center;
+      }
+
+      .text-block.left{
+        text-align:left;
+      }
+
+      .grid-2{
+        display:grid;
+        grid-template-columns:1.1fr 1fr;
+        gap:40px;
+        align-items:center;
+      }
+
+      .panel{
+        background:rgba(233,215,194,0.95);
+        border-radius:18px;
+        padding:36px 30px;
+        box-shadow:0 18px 28px rgba(122,86,64,0.08);
+      }
+
+      .panel .chapter-title{
+        font-size: clamp(2.5rem, 4vw, 5rem);
+        text-align:left;
+      }
+
+      .photo-collage{
+        position:relative;
+        min-height:420px;
+      }
+
+      .photo{
         position:absolute;
-        right:240px;
-        top:70px;
-        width:160px;
-        height:120px;
+        overflow:hidden;
+        border:8px solid rgba(122,86,64,0.65);
+        box-shadow:0 16px 34px rgba(122,86,64,0.12);
+        background:linear-gradient(135deg,#d0cdc5,#8aad84);
+      }
+
+      .photo.one{
+        left:30px; top:0;
+        width:360px; height:260px;
+        transform:rotate(-3deg);
+      }
+      .photo.two{
+        right:60px; top:145px;
+        width:310px; height:240px;
+        transform:rotate(2deg);
+      }
+
+      .photo .img{
+        position:absolute;
+        inset:0;
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+      }
+
+      .photo.real{
+        background:transparent;
+      }
+
+      .photo-grid-3{
+        position:relative;
+        min-height:420px;
+      }
+
+      .photo-grid-3 .photo{
+        width:280px; height:220px;
+      }
+
+      .photo-grid-3 .photo.a{ left:0; top:0; transform:rotate(-5deg); }
+      .photo-grid-3 .photo.b{ left:160px; top:140px; transform:rotate(4deg); }
+      .photo-grid-3 .photo.c{ right:30px; bottom:0; transform:rotate(-4deg); }
+
+      .mini-book{
+        position:absolute;
+        right:60px;
+        bottom:48px;
+        width:120px;
+        height:90px;
+        border:4px solid var(--brown);
+        border-radius:12px;
+        transform:rotate(5deg);
         z-index:2;
       }
-      .book-stack .b{
-        position:absolute;
-        width:120px;
-        height:75px;
-        border:4px solid var(--brown);
-        border-radius:18px;
-        background:rgba(255,255,255,0.06);
-      }
-      .book-stack .b1{left:28px;top:18px;transform:rotate(-6deg)}
-      .book-stack .b2{left:16px;top:10px;transform:rotate(-2deg)}
-      .book-stack .b3{left:0;top:0;transform:rotate(5deg)}
-      .book-stack .b::before{
+      .mini-book::before, .mini-book::after{
         content:"";
         position:absolute;
-        inset:12px 12px 16px;
-        border:2px solid rgba(122,86,64,0.7);
-        border-left:0;
-        border-right:0;
+        top:8px;
+        width:18px;
+        height:66px;
+        border:4px solid var(--brown);
+        border-radius:12px;
       }
+      .mini-book::before{left:12px;border-right:0}
+      .mini-book::after{right:12px;border-left:0}
 
       .book-icon{
         position:absolute;
-        left:90px;
+        left:70px;
         bottom:52px;
         width:110px;
         height:80px;
         border:4px solid var(--brown);
         border-radius:12px;
         transform:rotate(-5deg);
-        opacity:0.9;
         z-index:2;
       }
       .book-icon::before,.book-icon::after{
@@ -297,280 +365,23 @@
       .book-icon::before{left:12px;border-right:0}
       .book-icon::after{right:12px;border-left:0}
 
-      .mini-book{
-        position:absolute;
-        right:60px;
-        bottom:60px;
-        width:120px;
-        height:90px;
-        border:4px solid var(--brown);
-        border-radius:12px;
-        transform:rotate(5deg);
-        z-index:2;
-      }
-      .mini-book::before,.mini-book::after{
-        content:"";
-        position:absolute;
-        top:8px;
-        width:18px;
-        height:66px;
-        border:4px solid var(--brown);
-        border-radius:12px;
-      }
-      .mini-book::before{left:12px;border-right:0}
-      .mini-book::after{right:12px;border-left:0}
-
-      .center{
-        width:min(1280px,100%);
-        margin:0 auto;
-        position:relative;
-        z-index:2;
-      }
-
-      .title{
-        font-family:"Cormorant Garamond",serif;
-        font-weight:700;
-        color:var(--brown);
-        letter-spacing:-0.04em;
-        line-height:.95;
-        text-transform:uppercase;
-      }
-
-      .big-title{
-        font-size:clamp(4.2rem,8vw,12rem);
-        text-align:center;
-      }
-
-      .pill{
+      .soft-box{
         display:inline-block;
-        background:#e8d5c3;
-        padding:14px 32px;
-        border-radius:18px;
-        margin-top:22px;
-        box-shadow:0 10px 24px rgba(131,92,68,0.08);
-      }
-      .pill span{
-        font-family:"Cormorant Garamond",serif;
-        font-size:clamp(1.6rem,2.2vw,3rem);
-        font-weight:700;
-        color:var(--brown);
+        background:rgba(232,213,194,0.95);
+        padding:18px 24px;
+        border-radius:16px;
+        box-shadow:0 14px 22px rgba(122,86,64,0.08);
       }
 
-      .section-1 .center{
-        min-height:750px;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
+      .soft-box .chapter-title{
+        font-size: clamp(2.2rem, 3vw, 4.2rem);
       }
-
-      .section-2 .content{
-        width:min(1460px,100%);
-        margin:0 auto;
-        display:grid;
-        grid-template-columns:1.1fr 1fr;
-        align-items:center;
-        min-height:750px;
-        position:relative;
-        z-index:2;
-      }
-
-      .text-card{
-        background:rgba(231,210,191,0.94);
-        border-radius:18px;
-        padding:36px 30px;
-        min-height:300px;
-        box-shadow:0 16px 30px rgba(155,120,93,0.08);
-        display:flex;
-        align-items:center;
-      }
-      .text-card .title{
-        font-size:clamp(2.6rem,4vw,5.2rem);
-        text-align:left;
-      }
-
-      .photo-stack{
-        position:relative;
-        min-height:440px;
-      }
-
-      .photo{
-        position:absolute;
-        background:linear-gradient(135deg,#d8d0c0,#aabf94);
-        border:8px solid rgba(133,101,79,0.66);
-        box-shadow:0 16px 36px rgba(92,68,54,0.12);
-        overflow:hidden;
-      }
-
-      .photo.one{width:360px;height:260px;left:30px;top:0;transform:rotate(-3deg)}
-      .photo.two{width:310px;height:240px;left:185px;top:155px;transform:rotate(2deg)}
-
-      .photo::before{
-        content:"";
-        position:absolute;
-        inset:0;
-        background:linear-gradient(135deg,rgba(255,255,255,0.1),rgba(0,0,0,0.08));
-      }
-
-      .photo .img{
-        position:absolute;
-        inset:0;
-        background-size:cover;
-        background-position:center;
-        background-repeat:no-repeat;
-        filter:saturate(0.9) contrast(1.05);
-      }
-
-      .placeholder-a{background:linear-gradient(135deg,#d9d3c6,#7ea579)}
-      .placeholder-b{background:linear-gradient(135deg,#d7c1a8,#9eaf89)}
-
-      .copy{
-        width:min(1180px,100%);
-        margin:26px auto 0;
-        font-family:"Cormorant Garamond",serif;
-        font-size:clamp(1.8rem,2vw,3rem);
-        line-height:1.35;
-        color:var(--brown);
-        text-align:center;
-      }
-      .copy.left{text-align:left}
-
-      .section-3 .center,
-      .section-4 .center,
-      .section-5 .center,
-      .section-6 .center,
-      .section-7 .center,
-      .section-8 .center,
-      .section-9 .center,
-      .section-10 .center,
-      .section-11 .center,
-      .section-12 .center,
-      .section-13 .center,
-      .section-14 .center,
-      .section-15 .center{
-        width:min(1280px,100%);
-        margin:0 auto;
-        position:relative;
-        z-index:2;
-      }
-
-      .section-3 .title,
-      .section-4 .title,
-      .section-5 .title,
-      .section-6 .title,
-      .section-7 .title,
-      .section-8 .title,
-      .section-9 .title,
-      .section-10 .title,
-      .section-11 .title,
-      .section-12 .title,
-      .section-13 .title,
-      .section-14 .title,
-      .section-15 .title{
-        font-size:clamp(2.8rem,5vw,7rem);
-        text-align:center;
-      }
-
-      .section-5 .content,
-      .section-6 .content,
-      .section-7 .content,
-      .section-8 .content,
-      .section-9 .content,
-      .section-10 .content,
-      .section-11 .content,
-      .section-12 .content,
-      .section-13 .content,
-      .section-14 .content,
-      .section-15 .content{
-        width:min(1440px,100%);
-        margin:0 auto;
-        display:grid;
-        grid-template-columns:1fr 1.2fr;
-        gap:24px;
-        align-items:center;
-        position:relative;
-        z-index:2;
-      }
-
-      .collage{
-        position:relative;
-        min-height:420px;
-      }
-
-      .mini-photo{
-        position:absolute;
-        border:8px solid rgba(133,101,79,0.65);
-        background:linear-gradient(135deg,#d8d0c0,#a7b189);
-        box-shadow:0 18px 30px rgba(86,63,47,0.12);
-        overflow:hidden;
-      }
-
-      .mini-photo.a{width:270px;height:210px;left:0;top:0;transform:rotate(-5deg)}
-      .mini-photo.b{width:300px;height:220px;left:120px;top:120px;transform:rotate(4deg)}
-      .mini-photo.c{width:260px;height:200px;left:220px;bottom:0;transform:rotate(-4deg)}
-
-      .mini-photo .img{
-        position:absolute;
-        inset:0;
-        background:linear-gradient(135deg,#d7d5cd,#a6b987);
-        background-size:cover;
-        background-position:center;
-        background-repeat:no-repeat;
-      }
-
-      .soft-block{
-        background:rgba(230,210,190,0.8);
-        padding:20px 24px;
-        min-height:90px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        box-shadow:0 18px 30px rgba(150,117,90,0.08);
-      }
-
-      .soft-block .title{
-        font-size:clamp(2.2rem,3vw,4.5rem);
-        text-transform:uppercase;
-      }
-
-      .section-9 .content,
-      .section-10 .content,
-      .section-11 .content,
-      .section-12 .content,
-      .section-13 .content,
-      .section-14 .content,
-      .section-15 .content{
-        width:min(1440px,100%);
-        margin:0 auto;
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:30px;
-        align-items:center;
-        position:relative;
-        z-index:2;
-      }
-
-      .stacked-photos{
-        position:relative;
-        min-height:430px;
-      }
-
-      .stacked-photos .photo{
-        position:absolute;
-        width:330px;
-        height:230px;
-        border:8px solid rgba(133,101,79,0.65);
-      }
-
-      .stacked-photos .photo.p1{left:10px;top:0;transform:rotate(-4deg)}
-      .stacked-photos .photo.p2{left:150px;top:150px;transform:rotate(4deg)}
 
       .pie-wrap{
         display:flex;
-        justify-content:center;
         align-items:center;
+        justify-content:center;
       }
-
       .pie-chart{
         position:relative;
         width:430px;
@@ -579,682 +390,623 @@
         background:conic-gradient(#c39a7c 0 25%, #a87b5e 25% 100%);
         box-shadow:0 20px 32px rgba(120,84,60,0.12);
       }
-
       .pie-chart .val{
-        position:absolute;
-        inset:0;
-        display:flex;
-        align-items:center;
-        justify-content:center;
+        position:absolute; inset:0;
+        display:flex; align-items:center; justify-content:center;
         color:#fff;
-        font-family:"Cormorant Garamond",serif;
         font-size:clamp(3rem,4vw,5rem);
+        font-family:"Cormorant Garamond",serif;
         font-weight:700;
       }
-
       .pie-chart .val strong{
-        font-size:clamp(3.5rem,5vw,6rem);
+        font-size:clamp(3.4rem,5vw,6rem);
       }
 
-      .legend-box{
-        width:min(600px,100%);
-      }
-
-      .legend-box .title{
-        font-size:clamp(2.6rem,4vw,4.8rem);
-      }
-
-      .legend-box p{
-        margin-top:16px;
-        font-family:"Cormorant Garamond",serif;
-        font-size:clamp(1.7rem,2vw,2.8rem);
-        line-height:1.35;
-        color:var(--brown);
-      }
-
-      .section-13 .content,
-      .section-14 .content,
-      .section-15 .content{
-        width:min(1500px,100%);
-        margin:0 auto;
+      .section-end{
+        min-height:100vh;
         display:flex;
         align-items:center;
         justify-content:center;
       }
 
-      .big-card{
-        width:min(1200px,90%);
-        background:rgba(255,255,255,0.14);
+      .final-hero{
         position:relative;
+        width:min(1100px,90%);
+        text-align:center;
         z-index:2;
       }
 
-      .big-card .row{
-        display:grid;
-        grid-template-columns:1.2fr 1fr;
-        gap:30px;
-        align-items:center;
-      }
-
-      .big-card .title{
-        background:#e0ccac;
-        display:inline-block;
-        padding:14px 28px;
-        font-size:clamp(2.2rem,4vw,5rem);
-        margin-bottom:20px;
-      }
-
-      .big-card .copy{
-        text-align:left;
-        margin-top:0;
-        font-size:clamp(1.7rem,2vw,2.8rem);
-      }
-
-      .final-photo-grid{
+      .illustration{
         position:relative;
-        min-height:500px;
+        width:330px; height:220px;
+        margin:0 auto 20px;
       }
-
-      .final-photo-grid .photo{
-        position:absolute;
-        width:320px;
-        height:260px;
-        border:8px solid rgba(133,101,79,0.65);
-      }
-
-      .final-photo-grid .p1{left:10px;top:0;transform:rotate(-3deg)}
-      .final-photo-grid .p2{left:120px;top:200px;transform:rotate(4deg)}
-
-      .final-photo-grid .photo .img{
-        position:absolute;
-        inset:0;
-        background:linear-gradient(135deg,#d7d3c7,#8ca98d);
-        background-size:cover;
-        background-position:center;
-        background-repeat:no-repeat;
-      }
-
-      .text-hero{
-        width:min(1100px,90%);
-        margin:0 auto;
-        text-align:center;
-      }
-
-      .last-title{
-        font-family:"Cormorant Garamond",serif;
-        font-weight:700;
-        color:var(--brown);
-        letter-spacing:-0.04em;
-        line-height:0.9;
-        font-size:clamp(4.5rem,9vw,12rem);
-        text-transform:uppercase;
-      }
-
-      .illustration-girl{
-        position:relative;
-        width:330px;
-        height:220px;
-        margin:26px auto 0;
-      }
-
-      .illustration-girl .head{
-        position:absolute;
-        left:50%;
-        top:10px;
-        width:88px;
-        height:88px;
+      .illustration .head{
+        position:absolute; left:50%; top:8px;
+        width:90px; height:90px;
         border-radius:50%;
         border:4px solid var(--brown);
         transform:translateX(-50%);
       }
-
-      .illustration-girl .body{
-        position:absolute;
-        left:50%;
-        bottom:18px;
-        width:180px;
-        height:130px;
+      .illustration .body{
+        position:absolute; left:50%; bottom:20px;
+        width:180px; height:130px;
         border:4px solid var(--brown);
         transform:translateX(-50%);
         border-radius:24px 24px 12px 12px;
       }
-
-      .illustration-girl .book{
-        position:absolute;
-        left:50%;
-        bottom:10px;
-        width:150px;
-        height:90px;
+      .illustration .book{
+        position:absolute; left:50%; bottom:10px;
+        width:150px; height:90px;
         transform:translateX(-50%);
         border:4px solid var(--brown);
         border-radius:18px;
-        background:rgba(0,0,0,0.02);
       }
-
-      .illustration-girl .book::before,.illustration-girl .book::after{
+      .illustration .book::before, .illustration .book::after{
         content:"";
         position:absolute;
         top:10px;
-        width:18px;
-        height:64px;
+        width:18px; height:64px;
         border:4px solid var(--brown);
         border-radius:12px;
       }
-      .illustration-girl .book::before{left:12px;border-right:0}
-      .illustration-girl .book::after{right:12px;border-left:0}
+      .illustration .book::before{left:12px;border-right:0}
+      .illustration .book::after{right:12px;border-left:0}
 
-      .heart-line{
+      .heart-mini{
         position:absolute;
-        width:38px;
-        height:38px;
-        background:var(--brown-3);
+        width:38px; height:38px;
+        background:var(--brown-soft);
         transform:rotate(-45deg);
         border-radius:8px 0 0 0;
         opacity:0.9;
       }
-      .heart-line::before,.heart-line::after{
+      .heart-mini::before,.heart-mini::after{
         content:"";
         position:absolute;
-        width:38px;
-        height:38px;
-        background:var(--brown-3);
+        width:38px; height:38px;
+        background:var(--brown-soft);
         border-radius:50%;
       }
-      .heart-line::before{left:0;top:-18px}
-      .heart-line::after{left:18px;top:0}
+      .heart-mini::before{left:0; top:-18px}
+      .heart-mini::after{left:18px; top:0}
+      .heart-mini.a{left:145px; top:110px}
+      .heart-mini.b{right:145px; top:110px}
 
-      .heart-line.ha{left:160px;top:120px}
-      .heart-line.hb{right:150px;top:120px}
-
-      .section-15 .curve-end{
-        position:absolute;
-        width:220px;
-        height:80px;
-        border:4px solid var(--brown);
-        border-color:transparent transparent var(--brown) transparent;
-        border-radius:50%;
-        opacity:.9;
-        left:50%;
-        bottom:40px;
-        transform:translateX(-50%) rotate(8deg);
+      @media (max-width: 1100px){
+        .chapter-grid{
+          grid-template-columns:repeat(3, minmax(180px, 1fr));
+        }
       }
 
-      @media (max-width:980px){
-        .section-2 .content,
-        .section-5 .content,
-        .section-6 .content,
-        .section-7 .content,
-        .section-8 .content,
-        .section-9 .content,
-        .section-10 .content,
-        .section-11 .content,
-        .section-12 .content,
-        .section-13 .content,
-        .section-14 .content,
-        .section-15 .content,
-        .big-card .row{
+      @media (max-width: 820px){
+        .chapter-grid{
+          grid-template-columns:repeat(2, minmax(170px, 1fr));
+        }
+
+        .grid-2{
           grid-template-columns:1fr;
-          display:grid;
         }
 
-        .copy{
-          font-size:clamp(1.5rem,5vw,2.5rem);
+        .chapter-inner{
+          width:min(92%, 1100px);
         }
+      }
 
-        .photo-stack,
-        .collage,
-        .stacked-photos,
-        .final-photo-grid{
-          transform:scale(0.82);
-          transform-origin:center top;
-        }
-
-        .pie-chart{
-          width:300px;
-          height:300px;
+      @media (max-width: 560px){
+        .chapter-grid{
+          grid-template-columns:1fr;
         }
       }
     </style>
   </head>
   <body>
     <div class="page">
-      <nav class="book-menu">
-        <div class="book-menu-inner">
-          <div class="book-cards">
-            <a class="book-card active" href="#cap1">
-              <div class="book-card-number">Capítulo 1</div>
-              <div class="book-card-title">Tu en cada página</div>
-            </a>
-            <a class="book-card" href="#cap2">
-              <div class="book-card-number">Capítulo 2</div>
-              <div class="book-card-title">Tu corazón</div>
-            </a>
-            <a class="book-card" href="#cap3">
-              <div class="book-card-number">Capítulo 3</div>
-              <div class="book-card-title">Cómo empezó</div>
-            </a>
-            <a class="book-card" href="#cap4">
-              <div class="book-card-number">Capítulo 4</div>
-              <div class="book-card-title">Este tiempo</div>
-            </a>
-            <a class="book-card" href="#cap5">
-              <div class="book-card-number">Capítulo 5</div>
-              <div class="book-card-title">Cada momento</div>
-            </a>
-            <a class="book-card" href="#cap6">
-              <div class="book-card-number">Capítulo 6</div>
-              <div class="book-card-title">Significas</div>
-            </a>
-            <a class="book-card" href="#cap7">
-              <div class="book-card-number">Capítulo 7</div>
-              <div class="book-card-title">Motivación</div>
-            </a>
-            <a class="book-card" href="#cap8">
-              <div class="book-card-number">Capítulo 8</div>
-              <div class="book-card-title">Flores</div>
-            </a>
-            <a class="book-card" href="#cap9">
-              <div class="book-card-number">Capítulo 9</div>
-              <div class="book-card-title">Viaje</div>
-            </a>
-            <a class="book-card" href="#cap10">
-              <div class="book-card-number">Capítulo 10</div>
-              <div class="book-card-title">Contigo</div>
-            </a>
-            <a class="book-card" href="#cap11">
-              <div class="book-card-number">Capítulo 11</div>
-              <div class="book-card-title">Afortunado</div>
-            </a>
-            <a class="book-card" href="#cap12">
-              <div class="book-card-number">Capítulo 12</div>
-              <div class="book-card-title">Tus padres</div>
-            </a>
-            <a class="book-card" href="#cap13">
-              <div class="book-card-number">Capítulo 13</div>
-              <div class="book-card-title">Fin EP.1</div>
-            </a>
-            <a class="book-card" href="#cap14">
-              <div class="book-card-number">Capítulo 14</div>
-              <div class="book-card-title">Tu cumple</div>
-            </a>
-            <a class="book-card" href="#cap15">
-              <div class="book-card-number">Capítulo 15</div>
-              <div class="book-card-title">Te quiero</div>
-            </a>
+      <div class="chapter-grid-wrap">
+        <div class="chapter-grid">
+          <a href="#cap1" class="chapter-card">
+            <div class="cap-label">Capítulo 1</div>
+            <div class="cap-title">Tu en cada página</div>
+          </a>
+
+          <a href="#cap2" class="chapter-card">
+            <div class="cap-label">Capítulo 2</div>
+            <div class="cap-title">Tu corazón</div>
+          </a>
+
+          <a href="#cap3" class="chapter-card">
+            <div class="cap-label">Capítulo 3</div>
+            <div class="cap-title">Cómo empezó</div>
+          </a>
+
+          <a href="#cap4" class="chapter-card">
+            <div class="cap-label">Capítulo 4</div>
+            <div class="cap-title">Este tiempo</div>
+          </a>
+
+          <a href="#cap5" class="chapter-card">
+            <div class="cap-label">Capítulo 5</div>
+            <div class="cap-title">Cada momento</div>
+          </a>
+
+          <a href="#cap6" class="chapter-card">
+            <div class="cap-label">Capítulo 6</div>
+            <div class="cap-title">Significas</div>
+          </a>
+
+          <a href="#cap7" class="chapter-card">
+            <div class="cap-label">Capítulo 7</div>
+            <div class="cap-title">Motivación</div>
+          </a>
+
+          <a href="#cap8" class="chapter-card">
+            <div class="cap-label">Capítulo 8</div>
+            <div class="cap-title">Flores</div>
+          </a>
+
+          <a href="#cap9" class="chapter-card">
+            <div class="cap-label">Capítulo 9</div>
+            <div class="cap-title">Viaje</div>
+          </a>
+
+          <a href="#cap10" class="chapter-card">
+            <div class="cap-label">Capítulo 10</div>
+            <div class="cap-title">Contigo</div>
+          </a>
+
+          <a href="#cap11" class="chapter-card">
+            <div class="cap-label">Capítulo 11</div>
+            <div class="cap-title">Afortunado</div>
+          </a>
+
+          <a href="#cap12" class="chapter-card">
+            <div class="cap-label">Capítulo 12</div>
+            <div class="cap-title">Tus padres</div>
+          </a>
+
+          <a href="#cap13" class="chapter-card">
+            <div class="cap-label">Capítulo 13</div>
+            <div class="cap-title">Fin EP.1</div>
+          </a>
+
+          <a href="#cap14" class="chapter-card">
+            <div class="cap-label">Capítulo 14</div>
+            <div class="cap-title">Tu cumple</div>
+          </a>
+
+          <a href="#cap15" class="chapter-card">
+            <div class="cap-label">Capítulo 15</div>
+            <div class="cap-title">Te quiero</div>
+          </a>
+        </div>
+      </div>
+
+      <section class="chapter" id="cap1">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
+        <div class="curve"></div>
+        <div class="semi"></div>
+        <div class="heart a"></div>
+        <div class="heart b"></div>
+        <div class="star s1"></div>
+        <div class="star s2"></div>
+
+        <div class="chapter-inner">
+          <div class="chapter-content">
+            <div class="chapter-title main">Tu en cada página</div>
+            <div style="text-align:center;">
+              <span class="pizarra">
+                <span class="pizarra-text">Desde que llegaste</span>
+              </span>
+            </div>
           </div>
         </div>
-      </nav>
 
-      <div class="frame">
-        <section class="index-box">
-          <div class="index-title">Índice del libro</div>
-          <div class="index-grid">
-            <a class="index-card" href="#cap1">1. Tu en cada página</a>
-            <a class="index-card" href="#cap2">2. Corazón</a>
-            <a class="index-card" href="#cap3">3. Cómo empezó</a>
-            <a class="index-card" href="#cap4">4. Este tiempo</a>
-            <a class="index-card" href="#cap5">5. Cada momento</a>
-            <a class="index-card" href="#cap6">6. Significas</a>
-            <a class="index-card" href="#cap7">7. Motivación</a>
-            <a class="index-card" href="#cap8">8. Flores</a>
-            <a class="index-card" href="#cap9">9. Viaje</a>
-            <a class="index-card" href="#cap10">10. Contigo</a>
-            <a class="index-card" href="#cap11">11. Afortunado</a>
-            <a class="index-card" href="#cap12">12. Padres</a>
-            <a class="index-card" href="#cap13">13. Fin EP.1</a>
-            <a class="index-card" href="#cap14">14. Tu cumple</a>
-            <a class="index-card" href="#cap15">15. Te quiero</a>
-          </div>
-        </section>
+        <div class="book-icon"></div>
+      </section>
 
-        <section class="slide" id="cap1">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap2">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
+        <div class="curve c3"></div>
+        <div class="curve c4"></div>
 
-          <div class="book-stack">
-            <div class="b b1"></div>
-            <div class="b b2"></div>
-            <div class="b b3"></div>
-          </div>
+        <div class="heart c"></div>
+        <div class="heart d"></div>
+        <div class="star s3"></div>
+        <div class="star s4"></div>
 
-          <div class="curve c1"></div>
-          <div class="curve c2"></div>
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
+              <div class="panel">
+                <div class="chapter-title">
+                  Cuando amas a alguien<br>
+                  no lo eliges tú,<br>
+                  lo elige<br>
+                  tu corazón...
+                </div>
+              </div>
 
-          <div class="heart h1"></div>
-          <div class="heart h2"></div>
-          <div class="star st1"></div>
-          <div class="star st2"></div>
-
-          <div class="center">
-            <div class="title big-title">TU EN CADA PAGINA</div>
-            <div class="pill"><span>Desde que llegaste</span></div>
-          </div>
-
-          <div class="book-icon"></div>
-        </section>
-
-        <section class="slide" id="cap2">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
-
-          <div class="heart h3"></div>
-          <div class="heart h4"></div>
-          <div class="star st3"></div>
-          <div class="star st4"></div>
-          <div class="curve c3"></div>
-          <div class="curve c4"></div>
-
-          <div class="content">
-            <div class="text-card">
-              <div class="title">
-                Cuando amas a alguien<br>
-                no lo eliges tú,<br>
-                lo elige<br>
-                tu corazón...
+              <div class="photo-collage">
+                <div class="photo real one">
+                  <div class="img" style="background-image:url('assets/foto-cap2-1.jpg');"></div>
+                </div>
+                <div class="photo real two">
+                  <div class="img" style="background-image:url('assets/foto-cap2-2.jpg');"></div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="photo-stack">
-              <div class="photo real one"><div class="img" style="background-image:url('assets/foto-cap2-1.jpg');"></div></div>
-              <div class="photo real two"><div class="img" style="background-image:url('assets/foto-cap2-2.jpg');"></div></div>
+      <section class="chapter" id="cap3">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
+        <div class="curve c5"></div>
+
+        <div class="chapter-inner">
+          <div class="chapter-content">
+            <div class="chapter-title main">Cómo empezó todo...</div>
+            <div class="text-block">
+              Todo empezó gracias al shipeo que nos hizo mi prima Mariam, gracias a ella empezó todo esto...
             </div>
           </div>
-        </section>
+        </div>
 
-        <section class="slide" id="cap3">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
-          <div class="curve c5"></div>
+        <div class="mini-book"></div>
+      </section>
 
-          <div class="center">
-            <div class="title">COMO EMPEZO TODO...</div>
-            <div class="copy">
-              Todo empezó gracias al shipeo que nos hizo mi prima Mariam, gracias a ella empezó todo esto, todavía recuerdo la vez que hicimos pijamada virtual fue lo mejor, gracias al grupo de los top globales siempre estuvimos hablando, hacíamos llamada y gracias a todo eso fue que mi corazón se dio cuenta que quien era esa persona que tanto quería en su vida, pasamos muchas cosas juntos todo ese tiempo y yo siempre le escribía a nuestra prima y le decía todo lo que sentía por ti y así ella en el grupo siempre nos tiraba indirectas y todo eso fue súper pero súper top y desde esa vez tú ya te habías ganado ese lugar en mi corazoncito que nadie más se lo ha ganado y nadie se lo ganará.
+      <section class="chapter" id="cap4">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
+
+        <div class="chapter-inner">
+          <div class="chapter-content">
+            <div class="chapter-title main">Este tiempo...</div>
+            <div class="text-block">
+              En todo este tiempo me e dado cuenta lo especial que eres para mí...
             </div>
           </div>
+        </div>
 
-          <div class="mini-book"></div>
-        </section>
+        <div class="mini-book"></div>
+      </section>
 
-        <section class="slide" id="cap4">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap5">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-          <div class="center">
-            <div class="title">ESTE TIEMPO...</div>
-            <div class="copy">
-              En todo este tiempo me e dado cuenta lo especial que eres para mí y lo única que eres, eres una niña demasiado linda y no solo hablando físicamente, si no también sobre tu corazón tan lindo que tienes y se que todo eso hizo que yo me enamorara de ti, sé que en este tiempo hubo algo que hice que estuvo muy mal y fue un súper error mío y lo admito, ya no quiero seguir recordando pasado porque se que es lo que yo quiero ahora y eso eres tú, daré todo lo que esté a mi alcance para seguir demostrándote lo mucho que te quiero y te adoro, y quiero que seas tú esa niña que esté a mi lado siempre y podré cuidar.
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
+              <div class="photo-grid-3">
+                <div class="photo real a">
+                  <div class="img" style="background-image:url('assets/foto-cap5-1.jpg');"></div>
+                </div>
+                <div class="photo real b">
+                  <div class="img" style="background-image:url('assets/foto-cap5-2.jpg');"></div>
+                </div>
+                <div class="photo real c">
+                  <div class="img" style="background-image:url('assets/foto-cap5-3.jpg');"></div>
+                </div>
+              </div>
+
+              <div class="text-block left">
+                <div class="chapter-title" style="font-size:clamp(3rem,5vw,6rem);margin-bottom:18px;">Cada momento...</div>
+                Cada momento que paso contigo es algo muy increíble, siempre me haces sentir seguro...
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="mini-book"></div>
-        </section>
+        <div class="book-icon" style="left:70px; bottom:55px;"></div>
+      </section>
 
-        <section class="slide" id="cap5">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap6">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-          <div class="center">
-            <div class="content">
-              <div class="collage">
-                <div class="mini-photo a"><div class="img" style="background-image:url('assets/foto-cap5-1.jpg');"></div></div>
-                <div class="mini-photo b"><div class="img" style="background-image:url('assets/foto-cap5-2.jpg');"></div></div>
-                <div class="mini-photo c"><div class="img" style="background-image:url('assets/foto-cap5-3.jpg');"></div></div>
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
+              <div class="photo-grid-3">
+                <div class="photo real a">
+                  <div class="img" style="background-image:url('assets/foto-cap6-1.jpg');"></div>
+                </div>
+                <div class="photo real b">
+                  <div class="img" style="background-image:url('assets/foto-cap6-2.jpg');"></div>
+                </div>
               </div>
 
               <div>
-                <div class="title">CADA MOMENTO...</div>
-                <div class="copy left">
-                  Cada momento que paso contigo es algo muy increíble, siempre me haces sentir seguro y siempre que estoy contigo puedo ser yo mismo, contigo no tengo que ocultar nada y siempre puedo ser yo, todos esos lindos momentos que hemos pasado los guardaré por siempre, porque cada que los recuerdo mi corazón se pone muy feliz al saber que eres tú la niña que me hace tan feliz porque mi corazón te a elegido a ti y no quiere que sea nadie más, más que seas tú la que siempre esté a mi lado.
+                <div class="soft-box">
+                  <div class="chapter-title">Lo que significas para mí...</div>
+                </div>
+
+                <div class="text-block left" style="margin-top:28px;">
+                  Puse estas fotos para que veas que significas mucho para mí...
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="book-icon" style="left:65px;bottom:56px;"></div>
-        </section>
+        <div class="book-icon" style="left:80px; bottom:60px;"></div>
+      </section>
 
-        <section class="slide" id="cap6">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap7">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-          <div class="center">
-            <div class="content">
-              <div class="collage">
-                <div class="mini-photo a"><div class="img" style="background-image:url('assets/foto-cap6-1.jpg');"></div></div>
-                <div class="mini-photo b"><div class="img" style="background-image:url('assets/foto-cap6-2.jpg');"></div></div>
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
+              <div class="photo-grid-3">
+                <div class="photo real a">
+                  <div class="img" style="background-image:url('assets/foto-cap7-1.jpg');"></div>
+                </div>
+                <div class="photo real b">
+                  <div class="img" style="background-image:url('assets/foto-cap7-2.jpg');"></div>
+                </div>
               </div>
 
               <div>
-                <div class="soft-block">
-                  <div class="title">LO QUE SIGNIFICAS PARA MI...</div>
+                <div class="soft-box">
+                  <div class="chapter-title">Eres mi motivación...</div>
                 </div>
-                <div class="copy left">
-                  Puse estas fotos para que veas que significas mucho para mí, que no importa como tú salgas, porque para mí siempre estás a como tú estás, siempre serás la más bonita ante mis ojos, nunca habrá nadie más que pueda hacer competencia contigo porque nadie está a tu altura y tú eres mucho para mí.
+
+                <div class="text-block left" style="margin-top:28px;">
+                  Gracias de nuevo, gracias por todo y gracias por siempre estar ahí conmigo...
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="book-icon" style="left:70px;bottom:52px;"></div>
-        </section>
+        <div class="mini-book"></div>
+      </section>
 
-        <section class="slide" id="cap7">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap8">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-          <div class="center">
-            <div class="content">
-              <div class="collage">
-                <div class="mini-photo a"><div class="img" style="background-image:url('assets/foto-cap7-1.jpg');"></div></div>
-                <div class="mini-photo b"><div class="img" style="background-image:url('assets/foto-cap7-2.jpg');"></div></div>
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
+              <div class="photo-grid-3">
+                <div class="photo real a">
+                  <div class="img" style="background-image:url('assets/foto-cap8-1.jpg');"></div>
+                </div>
+                <div class="photo real b">
+                  <div class="img" style="background-image:url('assets/foto-cap8-2.jpg');"></div>
+                </div>
               </div>
 
               <div>
-                <div class="soft-block">
-                  <div class="title">ERES MI MOTIVACION...</div>
-                </div>
-                <div class="copy left">
-                  Gracias de nuevo, gracias por todo y gracias por siempre estar ahí conmigo, tú eres mi motivación para seguir cada día, el saber que te tengo a ti me motiva a ser mejor persona cada día y gracias a ti pude jugar como nunca había jugado para no decepcionarte y darles ese trofeo porque sé que tú confiabas en mí y ovbio no iba a defraudarte, por ti jugué así, y todos los goles fueron dedicados a ti y ese trofeo de máximo goleador también es por ti porque eres esa personita a la que le agradezco a Diosito por haberla traído a mi vida y no pido nada y a nadie porque contigo ya lo tengo todo...
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,6rem);">Como me sentí al darte estas flores...</div>
+                <div class="text-block left">
+                  Este día fue muy lindo, este día yo estaba súper nervioso...
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="mini-book"></div>
-        </section>
+        <div class="mini-book"></div>
+      </section>
 
-        <section class="slide" id="cap8">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap9">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-          <div class="center">
-            <div class="content">
-              <div class="collage">
-                <div class="mini-photo a"><div class="img" style="background-image:url('assets/foto-cap8-1.jpg');"></div></div>
-                <div class="mini-photo b"><div class="img" style="background-image:url('assets/foto-cap8-2.jpg');"></div></div>
-              </div>
-
-              <div>
-                <div class="title">Como me sentí al darte estas flores...</div>
-                <div class="copy left">
-                  Este día fue muy lindo, este día yo estaba súper nervioso, todo el plan que ya teníamos estaba saliendo a como lo habíamos planificado, a la hora de llegar al lugar y hablar contigo estaba temblando, estaba con muchos nervios y lo único que dije fue lo que salió de mi corazón y luego lo que sentí al dártelas fue lo mejor del mundo, mi corazón se sintió tan feliz y contento al saber que eras tú esa personita que las recibió porque sabe lo especial que eres y que el mismo fue el que te escogió a ti y no quiso que fuera nadie más porque sabe lo especial y única que eres y que te mereces eso y mucho más y eso te lo seguirá demostrando.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mini-book"></div>
-        </section>
-
-        <section class="slide" id="cap9">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
-
-          <div class="center">
-            <div class="content">
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
               <div class="stacked-photos">
-                <div class="photo p1 real"><div class="img" style="background-image:url('assets/foto-cap9-1.jpg');"></div></div>
-                <div class="photo p2 real"><div class="img" style="background-image:url('assets/foto-cap9-2.jpg');"></div></div>
+                <div class="photo real p1">
+                  <div class="img" style="background-image:url('assets/foto-cap9-1.jpg');"></div>
+                </div>
+                <div class="photo real p2">
+                  <div class="img" style="background-image:url('assets/foto-cap9-2.jpg');"></div>
+                </div>
               </div>
 
               <div>
-                <div class="title">PRIMER VIAJE JUNTOS...</div>
-                <div class="copy left">
-                  Nuestro primer viaje juntos porque espero que tengamos más en el futuro, este viaje fue demasiado increíble por todo lo que pasamos juntos, gracias a los chavalos te pudiste ir conmigo y fue lo mejor porque cuando iba con Fer ya iba que me dormía pero desde que iba contigo todo cambió porque quería ir hablando contigo aunque aveces no se ni de qué hablar pero al menos puedo pasar contigo, todos los momentos como tirarnos en los toboganes juntos, ir al cine y estar juntos, comprar pulseritas para compartirlas y gracias a ti que me dijiste, tomarnos fotos juntos para el recuerdo y todo eso que pasamos juntos fue lo mejor al igual que al regreso, siempre las cosas que pasemos juntos serán las mejores para mí y no las cambiaría por nada del mundo.
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5.5rem);">Primer viaje juntos...</div>
+                <div class="text-block left">
+                  Nuestro primer viaje juntos porque espero que tengamos más en el futuro...
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="book-icon" style="left:80px;bottom:58px;"></div>
-        </section>
+        <div class="book-icon" style="left:80px;bottom:55px;"></div>
+      </section>
 
-        <section class="slide" id="cap10">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap10">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-          <div class="center">
-            <div class="content">
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
               <div class="stacked-photos">
-                <div class="photo p1 real"><div class="img" style="background-image:url('assets/foto-cap10-1.jpg');"></div></div>
-                <div class="photo p2 real"><div class="img" style="background-image:url('assets/foto-cap10-2.jpg');"></div></div>
+                <div class="photo real p1">
+                  <div class="img" style="background-image:url('assets/foto-cap10-1.jpg');"></div>
+                </div>
+                <div class="photo real p2">
+                  <div class="img" style="background-image:url('assets/foto-cap10-2.jpg');"></div>
+                </div>
               </div>
 
               <div>
-                <div class="title">LO QUE QUIERO CONTIGO...</div>
-                <div class="copy left">
-                  Creo que esto ya lo e mencionado muchas veces pero nunca me cansaré de decirlo y más si es por ti, contigo yo quiero todo, quiero poder ser el dueño de ese corazoncito para poderlo cuidar y que nadie me lo vaya a hacer daño, quiero poder ser ese niño que te ayude en todo lo que tú necesites, que te pueda apoyar siempre en todas las cosas que hagas y siempre estar ahí para ti, cuando logres todas tus metas y tus logros poder estar ahí para celebrar contigo porque yo quiero estar a tu lado para ayudarte a cumplir todo lo que quieres más no llegar a hacer un estorbo, lo único que quiero es estar al lado de ti siempre y cuidarte mucho en este mundo tan malo y si tengo que esperar, lo haré y sería el segundo loco en el muelle de san Blas...
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5.5rem);">Lo que quiero contigo...</div>
+                <div class="text-block left">
+                  Creo que esto ya lo e mencionado muchas veces pero nunca me cansaré de decirlo...
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="book-icon" style="left:80px;bottom:52px;"></div>
-        </section>
+        <div class="book-icon" style="left:80px;bottom:55px;"></div>
+      </section>
 
-        <section class="slide" id="cap11">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap11">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-          <div class="center">
-            <div class="content">
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
               <div class="stacked-photos">
-                <div class="photo p1 real"><div class="img" style="background-image:url('assets/foto-cap11-1.jpg');"></div></div>
-                <div class="photo p2 real"><div class="img" style="background-image:url('assets/foto-cap11-2.jpg');"></div></div>
+                <div class="photo real p1">
+                  <div class="img" style="background-image:url('assets/foto-cap11-1.jpg');"></div>
+                </div>
+                <div class="photo real p2">
+                  <div class="img" style="background-image:url('assets/foto-cap11-2.jpg');"></div>
+                </div>
               </div>
 
               <div>
-                <div class="title">LO AFORTUNADO QUE ME SIENTO...</div>
-                <div class="copy left">
-                  El tenerte en mi vida lo es todo para mí, me siento tan afortunado, tú vales mucho para mí y ovbio que te valoraré y cuidaré porque no quiero perderte, quiero tenerte pa mi nomas y puedo que eso sea egoísmo pero tú lo eres todo para mí y no quiero que nadie piense lo contrario, eres una gran niña y agradezco por todooooo, por siempre estar ahí y por siempre apoyarme, te quiero muchísimo.
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5.5rem);">Lo afortunado que me siento...</div>
+                <div class="text-block left">
+                  El tenerte en mi vida lo es todo para mí...
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="mini-book"></div>
-        </section>
+        <div class="mini-book"></div>
+      </section>
 
-        <section class="slide" id="cap12">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+      <section class="chapter" id="cap12">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-          <div class="center">
-            <div class="content">
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
               <div class="pie-wrap">
                 <div class="pie-chart">
                   <div class="val"><strong>25%</strong></div>
                 </div>
               </div>
 
-              <div class="legend-box">
-                <div class="title">TUS PADRES</div>
-
-                <p>El día que me presenté:</p>
-                <p>El 75% me representa el miedo que tendre el día que me toque ir a hablar con ellos pero aún así siempre hablaré con la verdad porque sé que es lo que yo quiero contigo y lo que estoy dispuesto a dar.</p>
-                <p>El 25% significa los nervios que me darán al decirles porque siento que más el miedo harán una explosión dentro de mi que ni yo me explicaré pero se que siempre hablaré con la verdad y se que mi corazón dirá todo lo que siente por ti.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="mini-book"></div>
-        </section>
-
-        <section class="slide" id="cap13">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
-
-          <div class="center">
-            <div class="big-card">
-              <div class="row">
-                <div>
-                  <div class="title">FIN DEL EP.1</div>
-                  <div class="copy">
-                    Hemos llegado al final de este mini librito que quise hacerte con todo mi amor y para seguir demostrándote lo mucho que te quiero y que si quiero que seas tú y nadie más, no quiero que nunca te vayas de mi vida porque no se que haría sin ti, gracias por todo y perdón por tan poco, no se si en las anteriores páginas repetí algunas cosas pero créeme que nada tenía preparado y esto salió a como siempre desde el fondo de mi corazón, eres única e inigualable y mi corazón por eso te quiere a ti, eres la dueña de mi corazón y tienes que cuidarlo mucho, te quiero muchísimo mi mo4nitaaaa y siempre estaré aqui para tiiiii.
-                  </div>
-                </div>
-
-                <div class="final-photo-grid">
-                  <div class="photo p1 real"><div class="img" style="background-image:url('assets/foto-cap13-1.jpg');"></div></div>
-                  <div class="photo p2 real"><div class="img" style="background-image:url('assets/foto-cap13-2.jpg');"></div></div>
+              <div>
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5rem);text-align:left;">Tus padres</div>
+                <div class="text-block left">
+                  El 75% me representa el miedo ...
+                  <br><br>
+                  El 25% significa los nervios...
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section class="slide" id="cap14">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+        <div class="mini-book"></div>
+      </section>
 
-          <div class="center">
-            <div class="text-hero">
-              <div class="title" style="font-size:clamp(2.6rem,4vw,6rem);">TU PUMPLE...</div>
-              <div class="copy left" style="margin-top:24px;">
-                Este día fue súper Topcito porque todo lo que pasó fue súper wow que no encuentro ni palabras para describirlo, es algo que ya estaba planeado como desde 1 mes atrás porque me puse a pensar de que ya venia tu pumple y tenía que hacer algo especial para ti y me puse a pensar y esa fue mi idea así que busqué complices para que me ayudaran y gracias a Dios todo salió a como lo planeamos, fue un día demasiado lindo y me encanto verte feliz, eres lo que más amo en esta vida y no quiero a nadie más que a ti, gracias por haberme permitido pasar tiempo contigo y gracias por nunca irte, espero que este sea el primero de muchos cumpleaños que pasaremos juntos, eres la mejor y este niño te ama con todo su corazón.
+      <section class="chapter" id="cap13">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
+
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
+              <div>
+                <div class="soft-box">
+                  <div class="chapter-title">Fin del EP.1</div>
+                </div>
+
+                <div class="text-block left" style="margin-top:28px;">
+                  Hemos llegado al final de este mini librito que quise hacerte con todo mi amor...
+                </div>
+              </div>
+
+              <div class="final-photo-grid">
+                <div class="photo real p1">
+                  <div class="img" style="background-image:url('assets/foto-cap13-1.jpg');"></div>
+                </div>
+                <div class="photo real p2">
+                  <div class="img" style="background-image:url('assets/foto-cap13-2.jpg');"></div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="mini-book" style="right:30px;bottom:50px;"></div>
-        </section>
+      <section class="chapter" id="cap14">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
 
-        <section class="slide" id="cap15">
-          <div class="blob blob-left-top"></div>
-          <div class="blob blob-right-bottom"></div>
+        <div class="chapter-inner">
+          <div class="chapter-content long">
+            <div class="grid-2">
+              <div class="photo-grid-3">
+                <div class="photo real a">
+                  <div class="img" style="background-image:url('assets/foto-cap14-1.jpg');"></div>
+                </div>
+                <div class="photo real b">
+                  <div class="img" style="background-image:url('assets/foto-cap14-2.jpg');"></div>
+                </div>
+              </div>
 
+              <div>
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5.5rem);">Tu cumple...</div>
+                <div class="text-block left">
+                  Este día fue súper Topcito porque todo lo que pasó fue súper wow...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-book"></div>
+      </section>
+
+      <section class="chapter" id="cap15">
+        <div class="blob"></div>
+        <div class="blob-2"></div>
+
+        <div class="chapter-inner">
           <div class="final-hero">
-            <div class="illustration-girl">
-              <div class="heart-line ha"></div>
-              <div class="heart-line hb"></div>
+            <div class="illustration">
+              <div class="heart-mini a"></div>
+              <div class="heart-mini b"></div>
               <div class="head"></div>
               <div class="body"></div>
               <div class="book"></div>
             </div>
-            <div class="last-title">TE QUIERO</div>
+            <div class="last-title">Te quiero</div>
             <div class="curve c9"></div>
           </div>
-        </section>
-
-      </div>
+        </div>
+      </section>
     </div>
 
     <script>
-      const cards = document.querySelectorAll('.book-card');
-      const sections = [...document.querySelectorAll('section[id^="cap"]')];
+      const cards = document.querySelectorAll('.chapter-card');
 
-      const setActiveCard = (id) => {
+      const activateCard = (id) => {
         cards.forEach(card => {
           const href = card.getAttribute('href');
           card.classList.toggle('active', href === `#${id}`);
         });
       };
 
+      const sections = [...document.querySelectorAll('section[id^="cap"]')];
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setActiveCard(entry.target.id);
+            activateCard(entry.target.id);
           }
         });
       }, { threshold: 0.55 });
