@@ -4,110 +4,119 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Para ti, mi amor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root{
-        --paper:#f4f1ef;
-        --panel:#e9d7c2;
-        --panel-2:#d8c0a7;
-        --brown:#7a5640;
-        --brown-dark:#5d4031;
-        --brown-soft:#b98d67;
-        --line:rgba(122,86,64,0.75);
-        --shadow:rgba(122,86,64,0.08);
+        --bg:#f9f3f4;
+        --paper:#fffafc;
+        --paper-2:#faf0f4;
+        --pink-1:#f8dfe8;
+        --pink-2:#f2c7d7;
+        --pink-3:#e7b2c5;
+        --pink-4:#d98aa7;
+        --pink-5:#d06f97;
+        --rose:#b75f7d;
+        --rose-2:#8d526d;
+        --mauve:#b58a9e;
+        --lavender:#e9d9ed;
+        --cream:#fef9f8;
+        --text:#6d4557;
+        --text-soft:#7a5767;
+        --line:rgba(109,69,87,0.2);
+        --shadow:rgba(152,98,120,0.12);
       }
 
       *{ box-sizing:border-box; margin:0; padding:0; }
-
       html{ scroll-behavior:smooth; }
       body{
-        background:#efefeb;
-        color:var(--brown);
+        background:linear-gradient(180deg,#faf3f4 0%, #f5edf1 100%);
+        color:var(--text);
         font-family:"Inter",sans-serif;
       }
-
       a{text-decoration:none}
 
       .page{
         width:100%;
         min-height:100vh;
-        background:#efefeb;
       }
 
       .chapter-grid-wrap{
-        background:#f5f2ef;
-        padding:28px 18px 18px;
+        background:linear-gradient(180deg, #f9f2f5 0%, #f6eef2 100%);
+        padding:24px 18px 12px;
       }
 
       .chapter-grid{
-        display:grid;
-        grid-template-columns:repeat(6, minmax(180px, 1fr));
-        gap:20px;
         max-width:1500px;
         margin:0 auto;
+        display:grid;
+        grid-template-columns:repeat(6, minmax(170px,1fr));
+        gap:18px;
       }
 
       .chapter-card{
         display:block;
-        min-height:230px;
-        background:linear-gradient(180deg, rgba(233,215,194,0.92), rgba(240,230,222,0.78));
-        border:1px solid rgba(122,86,64,0.12);
-        border-radius:18px;
-        box-shadow:0 12px 28px rgba(122,86,64,0.07);
-        padding:20px 18px 18px;
+        min-height:220px;
+        background:linear-gradient(180deg, rgba(247,227,234,0.95), rgba(255,255,255,0.72));
+        border:1px solid rgba(109,69,87,0.12);
+        border-radius:20px;
+        box-shadow:0 14px 26px rgba(176,115,145,0.08);
+        padding:20px 16px 18px;
         position:relative;
         overflow:hidden;
-        transition:all .22s ease;
+        transition:all .25s ease;
       }
 
-      .chapter-card::before, .chapter-card::after{
+      .chapter-card::before,
+      .chapter-card::after{
         content:"";
         position:absolute;
         top:12px;
         width:8px;
         height:calc(100% - 24px);
-        background:rgba(122,86,64,.14);
+        background:rgba(109,69,87,0.14);
         border-radius:999px;
       }
+
       .chapter-card::before{ left:10px; }
       .chapter-card::after{ right:10px; }
 
-      .chapter-card:hover{
+      .chapter-card:hover,
+      .chapter-card.active{
         transform:translateY(-4px);
-        box-shadow:0 18px 30px rgba(122,86,64,0.12);
+        box-shadow:0 18px 30px rgba(176,115,145,0.14);
+        background:linear-gradient(180deg, rgba(246,214,227,0.98), rgba(255,255,255,0.8));
       }
 
       .cap-label{
-        font-size:0.78rem;
-        letter-spacing:0.18em;
+        font-size:0.72rem;
+        letter-spacing:0.17em;
         text-transform:uppercase;
-        color:rgba(122,86,64,0.8);
-        font-weight:700;
-        margin-bottom:10px;
+        color:rgba(109,69,87,0.8);
+        font-weight:800;
+        margin-bottom:12px;
       }
 
       .cap-title{
         font-family:"Cormorant Garamond",serif;
+        color:var(--text);
+        font-size:clamp(2.4rem, 1.9vw, 4rem);
+        line-height:0.88;
         font-weight:700;
-        font-size: clamp(2.6rem, 2vw, 4rem);
-        line-height:0.9;
-        color:var(--brown);
       }
 
       .chapter{
         position:relative;
         min-height:100vh;
-        background:var(--paper);
+        background:linear-gradient(180deg, rgba(255,250,252,0.94) 0%, rgba(249,240,244,0.96) 100%);
         overflow:hidden;
-        border-top:1px solid rgba(122,86,64,0.06);
       }
 
       .chapter-inner{
         position:relative;
         z-index:2;
-        width:min(1500px,92%);
+        width:min(1450px,92%);
         min-height:100vh;
         margin:0 auto;
         display:flex;
@@ -116,140 +125,137 @@
       }
 
       .chapter-content{
-        width:100%;
-        max-width:1200px;
+        width:min(1200px, 100%);
       }
 
-      .chapter-content.long{
-        max-width:1350px;
-      }
+      .chapter-content.wide{ width:min(1350px, 100%); }
 
       .blob, .blob-2, .curve, .curve-2, .semi, .semi-2, .heart, .star{
-        position:absolute;
-        pointer-events:none;
+        position:absolute; pointer-events:none;
       }
 
       .blob{
-        left:-80px; top:-80px;
-        width:300px; height:240px;
-        background:rgba(163,123,94,0.18);
-        border-radius:52% 48% 50% 50%;
+        left:-90px; top:-90px;
+        width:260px; height:210px;
+        background:rgba(218,161,183,0.22);
+        border-radius:62% 38% 52% 48%;
       }
+
       .blob-2{
-        right:-100px; bottom:-100px;
-        width:320px; height:230px;
-        background:rgba(163,123,94,0.18);
-        border-radius:60% 40% 56% 44%;
+        right:-110px; bottom:-90px;
+        width:300px; height:220px;
+        background:rgba(218,161,183,0.2);
+        border-radius:58% 42% 56% 44%;
       }
 
       .curve{
-        right:120px; top:35px;
-        width:180px; height:100px;
+        right:90px; top:35px;
+        width:200px; height:90px;
+        border:4px solid var(--rose-2);
+        border-color:transparent transparent var(--rose-2) transparent;
         border-radius:50%;
-        border:4px solid var(--brown);
-        border-color:transparent transparent var(--brown) transparent;
-        opacity:.9;
+        opacity:0.9;
       }
       .curve-2{
-        left:80px; bottom:80px;
-        width:200px; height:90px;
+        left:80px; bottom:90px;
+        width:180px; height:90px;
+        border:4px solid var(--rose-2);
+        border-color:transparent transparent var(--rose-2) transparent;
         border-radius:50%;
-        border:4px solid var(--brown);
-        border-color:transparent transparent var(--brown) transparent;
-        opacity:.9;
+        opacity:0.9;
       }
 
       .semi{
-        top:30px; right:260px;
-        width:100px; height:60px;
-        border-radius: 120px 120px 0 0;
-        border:4px solid var(--brown);
-        border-color:var(--brown) transparent transparent transparent;
-        opacity:.9;
+        top:30px; right:250px;
+        width:100px; height:62px;
+        border-radius:120px 120px 0 0;
+        border:4px solid var(--rose-2);
+        border-color:var(--rose-2) transparent transparent transparent;
+        opacity:0.9;
       }
       .semi-2{
-        left:40px; bottom:65px;
-        width:110px; height:60px;
-        border-radius: 120px 120px 0 0;
-        border:4px solid var(--brown);
-        border-color:var(--brown) transparent transparent transparent;
-        opacity:.9;
+        left:25px; bottom:60px;
+        width:110px; height:64px;
+        border-radius:120px 120px 0 0;
+        border:4px solid var(--rose-2);
+        border-color:var(--rose-2) transparent transparent transparent;
+        opacity:0.9;
       }
 
       .heart{
         width:36px; height:36px;
-        background:var(--brown-soft);
+        background:var(--pink-4);
         transform:rotate(-45deg);
         border-radius:8px 0 0 0;
-        opacity:.9;
+        opacity:0.9;
       }
-      .heart::before,.heart::after{
+      .heart::before,
+      .heart::after{
         content:"";
         position:absolute;
         width:36px; height:36px;
-        background:var(--brown-soft);
+        background:var(--pink-4);
         border-radius:50%;
       }
       .heart::before{ left:0; top:-18px; }
       .heart::after{ left:18px; top:0; }
-      .heart.a{ left:120px; top:120px; }
-      .heart.b{ left:260px; top:300px; }
+
+      .heart.a{ left:120px; top:110px; }
+      .heart.b{ left:260px; top:260px; }
       .heart.c{ right:150px; top:420px; }
       .heart.d{ left:120px; bottom:120px; }
       .heart.e{ right:180px; bottom:110px; }
 
       .star{
         width:18px; height:18px;
-        background:rgba(122,86,64,.8);
+        background:rgba(109,69,87,0.75);
         clip-path:polygon(50% 0%,61% 35%,100% 35%,68% 57%,79% 100%,50% 72%,21% 100%,32% 57%,0% 35%,39% 35%);
       }
-      .star.s1{ left:200px; top:430px; }
-      .star.s2{ left:280px; top:530px; }
-      .star.s3{ right:200px; top:140px; }
+      .star.s1{ left:180px; top:410px; }
+      .star.s2{ left:270px; top:560px; }
+      .star.s3{ right:180px; top:130px; }
       .star.s4{ right:260px; bottom:180px; }
 
       .chapter-title{
         font-family:"Cormorant Garamond",serif;
         font-weight:700;
-        text-transform:uppercase;
         letter-spacing:-0.04em;
-        color:var(--brown);
+        text-transform:uppercase;
+        color:var(--text);
         line-height:0.9;
         margin-bottom:18px;
       }
 
       .chapter-title.main{
-        font-size: clamp(3.5rem, 7vw, 11rem);
+        font-size:clamp(3.8rem, 7vw, 11rem);
         text-align:center;
       }
 
       .pizarra{
         display:inline-block;
-        background:var(--panel);
+        background:linear-gradient(180deg, rgba(246,224,233,0.92), rgba(255,255,255,0.75));
         padding:18px 26px;
         border-radius:16px;
-        box-shadow:0 12px 25px rgba(122,86,64,0.08);
-        margin-top:8px;
+        box-shadow:0 12px 28px rgba(176,115,145,0.08);
       }
-      .pizarra .pizarra-text{
+
+      .pizarra-text{
         display:block;
         font-family:"Cormorant Garamond",serif;
+        font-size:clamp(2rem,2.5vw,3.5rem);
         font-weight:700;
-        font-size:clamp(2rem,2.5vw,3.4rem);
-        color:var(--brown);
+        color:var(--text);
       }
 
       .text-block{
         font-family:"Cormorant Garamond",serif;
-        font-size:clamp(1.8rem,2.1vw,3rem);
+        font-size:clamp(1.8rem,2.2vw,3rem);
         line-height:1.35;
-        color:var(--brown);
+        color:var(--text);
         text-align:center;
       }
 
-      .text-block.left{
-        text-align:left;
-      }
+      .text-block.left{ text-align:left; }
 
       .grid-2{
         display:grid;
@@ -259,14 +265,15 @@
       }
 
       .panel{
-        background:rgba(233,215,194,0.95);
-        border-radius:18px;
-        padding:36px 30px;
-        box-shadow:0 18px 28px rgba(122,86,64,0.08);
+        background:rgba(247,229,236,0.9);
+        border:1px solid rgba(109,69,87,0.08);
+        border-radius:20px;
+        padding:34px 28px;
+        box-shadow:0 18px 28px rgba(176,115,145,0.08);
       }
 
       .panel .chapter-title{
-        font-size: clamp(2.5rem, 4vw, 5rem);
+        font-size:clamp(2.5rem, 4vw, 5rem);
         text-align:left;
       }
 
@@ -278,9 +285,9 @@
       .photo{
         position:absolute;
         overflow:hidden;
-        border:8px solid rgba(122,86,64,0.65);
+        border:8px solid rgba(145,95,118,0.72);
         box-shadow:0 16px 34px rgba(122,86,64,0.12);
-        background:linear-gradient(135deg,#d0cdc5,#8aad84);
+        background:linear-gradient(135deg,#efdfe6,#d7c0cc);
       }
 
       .photo.one{
@@ -302,10 +309,6 @@
         background-repeat:no-repeat;
       }
 
-      .photo.real{
-        background:transparent;
-      }
-
       .photo-grid-3{
         position:relative;
         min-height:420px;
@@ -316,31 +319,30 @@
       }
 
       .photo-grid-3 .photo.a{ left:0; top:0; transform:rotate(-5deg); }
-      .photo-grid-3 .photo.b{ left:160px; top:140px; transform:rotate(4deg); }
+      .photo-grid-3 .photo.b{ left:150px; top:140px; transform:rotate(4deg); }
       .photo-grid-3 .photo.c{ right:30px; bottom:0; transform:rotate(-4deg); }
 
       .mini-book{
         position:absolute;
-        right:60px;
-        bottom:48px;
-        width:120px;
-        height:90px;
-        border:4px solid var(--brown);
+        right:60px; bottom:48px;
+        width:120px; height:90px;
+        border:4px solid var(--rose-2);
         border-radius:12px;
         transform:rotate(5deg);
         z-index:2;
       }
+
       .mini-book::before, .mini-book::after{
         content:"";
         position:absolute;
         top:8px;
         width:18px;
         height:66px;
-        border:4px solid var(--brown);
+        border:4px solid var(--rose-2);
         border-radius:12px;
       }
-      .mini-book::before{left:12px;border-right:0}
-      .mini-book::after{right:12px;border-left:0}
+      .mini-book::before{ left:12px; border-right:0; }
+      .mini-book::after{ right:12px; border-left:0; }
 
       .book-icon{
         position:absolute;
@@ -348,33 +350,35 @@
         bottom:52px;
         width:110px;
         height:80px;
-        border:4px solid var(--brown);
+        border:4px solid var(--rose-2);
         border-radius:12px;
         transform:rotate(-5deg);
         z-index:2;
       }
-      .book-icon::before,.book-icon::after{
+
+      .book-icon::before, .book-icon::after{
         content:"";
         position:absolute;
         top:8px;
         width:18px;
         height:64px;
-        border:4px solid var(--brown);
+        border:4px solid var(--rose-2);
         border-radius:12px;
       }
-      .book-icon::before{left:12px;border-right:0}
-      .book-icon::after{right:12px;border-left:0}
+      .book-icon::before{ left:12px; border-right:0; }
+      .book-icon::after{ right:12px; border-left:0; }
 
       .soft-box{
         display:inline-block;
-        background:rgba(232,213,194,0.95);
+        background:linear-gradient(180deg, rgba(247,219,232,0.95), rgba(255,255,255,0.75));
         padding:18px 24px;
         border-radius:16px;
-        box-shadow:0 14px 22px rgba(122,86,64,0.08);
+        box-shadow:0 14px 22px rgba(176,115,145,0.08);
       }
 
       .soft-box .chapter-title{
-        font-size: clamp(2.2rem, 3vw, 4.2rem);
+        font-size:clamp(2.2rem, 3vw, 4.2rem);
+        margin:0;
       }
 
       .pie-wrap{
@@ -382,121 +386,122 @@
         align-items:center;
         justify-content:center;
       }
+
       .pie-chart{
         position:relative;
-        width:430px;
-        height:430px;
+        width:430px; height:430px;
         border-radius:50%;
-        background:conic-gradient(#c39a7c 0 25%, #a87b5e 25% 100%);
-        box-shadow:0 20px 32px rgba(120,84,60,0.12);
+        background:conic-gradient(#d08ea8 0 25%, #ba738f 25% 100%);
+        box-shadow:0 20px 32px rgba(169,121,143,0.12);
       }
+
       .pie-chart .val{
         position:absolute; inset:0;
         display:flex; align-items:center; justify-content:center;
-        color:#fff;
-        font-size:clamp(3rem,4vw,5rem);
+        color:white;
         font-family:"Cormorant Garamond",serif;
+        font-size:clamp(3rem,4vw,5rem);
         font-weight:700;
       }
-      .pie-chart .val strong{
-        font-size:clamp(3.4rem,5vw,6rem);
-      }
 
-      .section-end{
-        min-height:100vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
+      .pie-chart .val strong{
+        font-size:clamp(3.5rem,5vw,6rem);
       }
 
       .final-hero{
-        position:relative;
         width:min(1100px,90%);
-        text-align:center;
+        margin:0 auto;
+        position:relative;
         z-index:2;
+        text-align:center;
       }
 
       .illustration{
         position:relative;
         width:330px; height:220px;
-        margin:0 auto 20px;
+        margin:20px auto 26px;
       }
+
       .illustration .head{
-        position:absolute; left:50%; top:8px;
-        width:90px; height:90px;
+        position:absolute; left:50%; top:10px;
+        width:88px; height:88px;
         border-radius:50%;
-        border:4px solid var(--brown);
+        border:4px solid var(--rose-2);
         transform:translateX(-50%);
+        background:rgba(255,255,255,0.08);
       }
+
       .illustration .body{
-        position:absolute; left:50%; bottom:20px;
+        position:absolute; left:50%; bottom:18px;
         width:180px; height:130px;
-        border:4px solid var(--brown);
+        border:4px solid var(--rose-2);
         transform:translateX(-50%);
         border-radius:24px 24px 12px 12px;
+        background:rgba(255,255,255,0.08);
       }
+
       .illustration .book{
         position:absolute; left:50%; bottom:10px;
         width:150px; height:90px;
         transform:translateX(-50%);
-        border:4px solid var(--brown);
+        border:4px solid var(--rose-2);
         border-radius:18px;
+        background:rgba(255,255,255,0.04);
       }
+
       .illustration .book::before, .illustration .book::after{
         content:"";
         position:absolute;
         top:10px;
         width:18px; height:64px;
-        border:4px solid var(--brown);
+        border:4px solid var(--rose-2);
         border-radius:12px;
       }
-      .illustration .book::before{left:12px;border-right:0}
-      .illustration .book::after{right:12px;border-left:0}
+      .illustration .book::before{ left:12px; border-right:0; }
+      .illustration .book::after{ right:12px; border-left:0; }
 
       .heart-mini{
         position:absolute;
         width:38px; height:38px;
-        background:var(--brown-soft);
+        background:var(--pink-4);
         transform:rotate(-45deg);
         border-radius:8px 0 0 0;
         opacity:0.9;
       }
-      .heart-mini::before,.heart-mini::after{
+      .heart-mini::before, .heart-mini::after{
         content:"";
         position:absolute;
         width:38px; height:38px;
-        background:var(--brown-soft);
+        background:var(--pink-4);
         border-radius:50%;
       }
-      .heart-mini::before{left:0; top:-18px}
-      .heart-mini::after{left:18px; top:0}
-      .heart-mini.a{left:145px; top:110px}
-      .heart-mini.b{right:145px; top:110px}
+      .heart-mini::before{ left:0; top:-18px; }
+      .heart-mini::after{ left:18px; top:0; }
+      .heart-mini.a{ left:145px; top:120px; }
+      .heart-mini.b{ right:145px; top:120px; }
+
+      .last-title{
+        font-family:"Cormorant Garamond",serif;
+        font-weight:700;
+        color:var(--text);
+        letter-spacing:-0.05em;
+        line-height:0.9;
+        font-size:clamp(4.2rem, 9vw, 12rem);
+        text-transform:uppercase;
+      }
 
       @media (max-width: 1100px){
-        .chapter-grid{
-          grid-template-columns:repeat(3, minmax(180px, 1fr));
-        }
+        .chapter-grid{ grid-template-columns:repeat(3,minmax(170px,1fr)); }
       }
 
       @media (max-width: 820px){
-        .chapter-grid{
-          grid-template-columns:repeat(2, minmax(170px, 1fr));
-        }
-
-        .grid-2{
-          grid-template-columns:1fr;
-        }
-
-        .chapter-inner{
-          width:min(92%, 1100px);
-        }
+        .chapter-grid{ grid-template-columns:repeat(2,minmax(170px,1fr)); }
+        .grid-2{ grid-template-columns:1fr; }
+        .chapter-inner{ width:min(92%,1100px); }
       }
 
       @media (max-width: 560px){
-        .chapter-grid{
-          grid-template-columns:1fr;
-        }
+        .chapter-grid{ grid-template-columns:1fr; }
       }
     </style>
   </head>
@@ -504,7 +509,7 @@
     <div class="page">
       <div class="chapter-grid-wrap">
         <div class="chapter-grid">
-          <a href="#cap1" class="chapter-card">
+          <a href="#cap1" class="chapter-card active">
             <div class="cap-label">Capítulo 1</div>
             <div class="cap-title">Tu en cada página</div>
           </a>
@@ -594,7 +599,7 @@
         <div class="chapter-inner">
           <div class="chapter-content">
             <div class="chapter-title main">Tu en cada página</div>
-            <div style="text-align:center;">
+            <div style="text-align:center; margin-top:18px;">
               <span class="pizarra">
                 <span class="pizarra-text">Desde que llegaste</span>
               </span>
@@ -610,14 +615,13 @@
         <div class="blob-2"></div>
         <div class="curve c3"></div>
         <div class="curve c4"></div>
-
         <div class="heart c"></div>
         <div class="heart d"></div>
         <div class="star s3"></div>
         <div class="star s4"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
               <div class="panel">
                 <div class="chapter-title">
@@ -629,10 +633,10 @@
               </div>
 
               <div class="photo-collage">
-                <div class="photo real one">
+                <div class="photo one real">
                   <div class="img" style="background-image:url('assets/foto-cap2-1.jpg');"></div>
                 </div>
-                <div class="photo real two">
+                <div class="photo two real">
                   <div class="img" style="background-image:url('assets/foto-cap2-2.jpg');"></div>
                 </div>
               </div>
@@ -679,23 +683,17 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
               <div class="photo-grid-3">
-                <div class="photo real a">
-                  <div class="img" style="background-image:url('assets/foto-cap5-1.jpg');"></div>
-                </div>
-                <div class="photo real b">
-                  <div class="img" style="background-image:url('assets/foto-cap5-2.jpg');"></div>
-                </div>
-                <div class="photo real c">
-                  <div class="img" style="background-image:url('assets/foto-cap5-3.jpg');"></div>
-                </div>
+                <div class="photo a real"><div class="img" style="background-image:url('assets/foto-cap5-1.jpg');"></div></div>
+                <div class="photo b real"><div class="img" style="background-image:url('assets/foto-cap5-2.jpg');"></div></div>
+                <div class="photo c real"><div class="img" style="background-image:url('assets/foto-cap5-3.jpg');"></div></div>
               </div>
 
               <div class="text-block left">
-                <div class="chapter-title" style="font-size:clamp(3rem,5vw,6rem);margin-bottom:18px;">Cada momento...</div>
-                Cada momento que paso contigo es algo muy increíble, siempre me haces sentir seguro...
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5.5rem); margin-bottom:18px;">Cada momento...</div>
+                Cada momento que paso contigo es algo muy increíble...
               </div>
             </div>
           </div>
@@ -709,15 +707,11 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
               <div class="photo-grid-3">
-                <div class="photo real a">
-                  <div class="img" style="background-image:url('assets/foto-cap6-1.jpg');"></div>
-                </div>
-                <div class="photo real b">
-                  <div class="img" style="background-image:url('assets/foto-cap6-2.jpg');"></div>
-                </div>
+                <div class="photo a real"><div class="img" style="background-image:url('assets/foto-cap6-1.jpg');"></div></div>
+                <div class="photo b real"><div class="img" style="background-image:url('assets/foto-cap6-2.jpg');"></div></div>
               </div>
 
               <div>
@@ -725,7 +719,7 @@
                   <div class="chapter-title">Lo que significas para mí...</div>
                 </div>
 
-                <div class="text-block left" style="margin-top:28px;">
+                <div class="text-block left" style="margin-top:26px;">
                   Puse estas fotos para que veas que significas mucho para mí...
                 </div>
               </div>
@@ -741,15 +735,11 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
               <div class="photo-grid-3">
-                <div class="photo real a">
-                  <div class="img" style="background-image:url('assets/foto-cap7-1.jpg');"></div>
-                </div>
-                <div class="photo real b">
-                  <div class="img" style="background-image:url('assets/foto-cap7-2.jpg');"></div>
-                </div>
+                <div class="photo a real"><div class="img" style="background-image:url('assets/foto-cap7-1.jpg');"></div></div>
+                <div class="photo b real"><div class="img" style="background-image:url('assets/foto-cap7-2.jpg');"></div></div>
               </div>
 
               <div>
@@ -757,7 +747,7 @@
                   <div class="chapter-title">Eres mi motivación...</div>
                 </div>
 
-                <div class="text-block left" style="margin-top:28px;">
+                <div class="text-block left" style="margin-top:26px;">
                   Gracias de nuevo, gracias por todo y gracias por siempre estar ahí conmigo...
                 </div>
               </div>
@@ -773,19 +763,15 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
               <div class="photo-grid-3">
-                <div class="photo real a">
-                  <div class="img" style="background-image:url('assets/foto-cap8-1.jpg');"></div>
-                </div>
-                <div class="photo real b">
-                  <div class="img" style="background-image:url('assets/foto-cap8-2.jpg');"></div>
-                </div>
+                <div class="photo a real"><div class="img" style="background-image:url('assets/foto-cap8-1.jpg');"></div></div>
+                <div class="photo b real"><div class="img" style="background-image:url('assets/foto-cap8-2.jpg');"></div></div>
               </div>
 
               <div>
-                <div class="chapter-title" style="font-size:clamp(3rem,4vw,6rem);">Como me sentí al darte estas flores...</div>
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5.5rem);">Como me sentí al darte estas flores...</div>
                 <div class="text-block left">
                   Este día fue muy lindo, este día yo estaba súper nervioso...
                 </div>
@@ -802,13 +788,13 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
-              <div class="stacked-photos">
-                <div class="photo real p1">
+              <div class="stacked-photos" style="position:relative; min-height:430px;">
+                <div class="photo p1 real" style="position:absolute; width:330px; height:230px; left:10px; top:0; transform:rotate(-4deg); border:8px solid rgba(145,95,118,0.72);">
                   <div class="img" style="background-image:url('assets/foto-cap9-1.jpg');"></div>
                 </div>
-                <div class="photo real p2">
+                <div class="photo p2 real" style="position:absolute; width:330px; height:230px; left:150px; top:150px; transform:rotate(4deg); border:8px solid rgba(145,95,118,0.72);">
                   <div class="img" style="background-image:url('assets/foto-cap9-2.jpg');"></div>
                 </div>
               </div>
@@ -823,7 +809,7 @@
           </div>
         </div>
 
-        <div class="book-icon" style="left:80px;bottom:55px;"></div>
+        <div class="book-icon" style="left:80px; bottom:58px;"></div>
       </section>
 
       <section class="chapter" id="cap10">
@@ -831,13 +817,13 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
-              <div class="stacked-photos">
-                <div class="photo real p1">
+              <div class="stacked-photos" style="position:relative; min-height:430px;">
+                <div class="photo p1 real" style="position:absolute; width:330px; height:230px; left:10px; top:0; transform:rotate(-4deg); border:8px solid rgba(145,95,118,0.72);">
                   <div class="img" style="background-image:url('assets/foto-cap10-1.jpg');"></div>
                 </div>
-                <div class="photo real p2">
+                <div class="photo p2 real" style="position:absolute; width:330px; height:230px; left:150px; top:150px; transform:rotate(4deg); border:8px solid rgba(145,95,118,0.72);">
                   <div class="img" style="background-image:url('assets/foto-cap10-2.jpg');"></div>
                 </div>
               </div>
@@ -852,7 +838,7 @@
           </div>
         </div>
 
-        <div class="book-icon" style="left:80px;bottom:55px;"></div>
+        <div class="book-icon" style="left:80px; bottom:52px;"></div>
       </section>
 
       <section class="chapter" id="cap11">
@@ -860,13 +846,13 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
-              <div class="stacked-photos">
-                <div class="photo real p1">
+              <div class="stacked-photos" style="position:relative; min-height:430px;">
+                <div class="photo p1 real" style="position:absolute; width:330px; height:230px; left:10px; top:0; transform:rotate(-4deg); border:8px solid rgba(145,95,118,0.72);">
                   <div class="img" style="background-image:url('assets/foto-cap11-1.jpg');"></div>
                 </div>
-                <div class="photo real p2">
+                <div class="photo p2 real" style="position:absolute; width:330px; height:230px; left:150px; top:150px; transform:rotate(4deg); border:8px solid rgba(145,95,118,0.72);">
                   <div class="img" style="background-image:url('assets/foto-cap11-2.jpg');"></div>
                 </div>
               </div>
@@ -889,7 +875,7 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
               <div class="pie-wrap">
                 <div class="pie-chart">
@@ -898,9 +884,9 @@
               </div>
 
               <div>
-                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5rem);text-align:left;">Tus padres</div>
+                <div class="chapter-title" style="font-size:clamp(3rem,4vw,5rem); text-align:left;">Tus padres</div>
                 <div class="text-block left">
-                  El 75% me representa el miedo ...
+                  El 75% me representa el miedo que tendré el día que me toque hablar con ellos...
                   <br><br>
                   El 25% significa los nervios...
                 </div>
@@ -917,23 +903,23 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
               <div>
                 <div class="soft-box">
                   <div class="chapter-title">Fin del EP.1</div>
                 </div>
 
-                <div class="text-block left" style="margin-top:28px;">
+                <div class="text-block left" style="margin-top:26px;">
                   Hemos llegado al final de este mini librito que quise hacerte con todo mi amor...
                 </div>
               </div>
 
-              <div class="final-photo-grid">
-                <div class="photo real p1">
+              <div class="photo-collage">
+                <div class="photo one real">
                   <div class="img" style="background-image:url('assets/foto-cap13-1.jpg');"></div>
                 </div>
-                <div class="photo real p2">
+                <div class="photo two real">
                   <div class="img" style="background-image:url('assets/foto-cap13-2.jpg');"></div>
                 </div>
               </div>
@@ -947,15 +933,11 @@
         <div class="blob-2"></div>
 
         <div class="chapter-inner">
-          <div class="chapter-content long">
+          <div class="chapter-content wide">
             <div class="grid-2">
               <div class="photo-grid-3">
-                <div class="photo real a">
-                  <div class="img" style="background-image:url('assets/foto-cap14-1.jpg');"></div>
-                </div>
-                <div class="photo real b">
-                  <div class="img" style="background-image:url('assets/foto-cap14-2.jpg');"></div>
-                </div>
+                <div class="photo a real"><div class="img" style="background-image:url('assets/foto-cap14-1.jpg');"></div></div>
+                <div class="photo b real"><div class="img" style="background-image:url('assets/foto-cap14-2.jpg');"></div></div>
               </div>
 
               <div>
@@ -985,7 +967,7 @@
               <div class="book"></div>
             </div>
             <div class="last-title">Te quiero</div>
-            <div class="curve c9"></div>
+            <div class="curve" style="left:50%; right:auto; bottom:20px; top:auto; width:220px; transform:translateX(-50%) rotate(8deg);"></div>
           </div>
         </div>
       </section>
@@ -993,20 +975,19 @@
 
     <script>
       const cards = document.querySelectorAll('.chapter-card');
+      const sections = [...document.querySelectorAll('section[id^="cap"]')];
 
-      const activateCard = (id) => {
+      const setActive = (id) => {
         cards.forEach(card => {
           const href = card.getAttribute('href');
           card.classList.toggle('active', href === `#${id}`);
         });
       };
 
-      const sections = [...document.querySelectorAll('section[id^="cap"]')];
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            activateCard(entry.target.id);
+            setActive(entry.target.id);
           }
         });
       }, { threshold: 0.55 });
