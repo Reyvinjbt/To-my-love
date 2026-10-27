@@ -9,9 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root{
-        --bg:#faf3f6;
-        --bg-2:#f8edf2;
+        --bg:#faf2f5;
+        --bg-2:#f7edf2;
         --paper:#fffafc;
+        --paper-2:#fdf0f5;
         --pink-1:#f8dfe9;
         --pink-2:#f3c8d9;
         --pink-3:#e7b5c8;
@@ -30,7 +31,7 @@
       html{ scroll-behavior:smooth; }
       body{
         margin:0;
-        background:linear-gradient(180deg, #faf3f6 0%, #f7edf2 100%);
+        background:linear-gradient(180deg, #faf3f6 0%, #f5edf2 100%);
         color:var(--text);
         font-family:"Inter",sans-serif;
       }
@@ -46,7 +47,7 @@
         position:sticky;
         top:0;
         z-index:1200;
-        background:rgba(249,243,246,0.9);
+        background:rgba(249,243,246,0.92);
         backdrop-filter:blur(10px);
         -webkit-backdrop-filter:blur(10px);
         border-bottom:1px solid rgba(109,69,87,0.08);
@@ -54,28 +55,28 @@
       }
 
       .menu-wrap{
-        width:min(1560px, 96%);
+        width:min(1550px, 96%);
         margin:0 auto;
-        padding:18px 12px 22px;
+        padding:14px 12px 18px;
       }
 
       .menu-grid{
         display:grid;
-        grid-template-columns:repeat(6, minmax(170px, 1fr));
-        gap:16px;
+        grid-template-columns:repeat(6, minmax(150px, 1fr));
+        gap:14px;
       }
 
       .menu-card{
         display:block;
-        min-height:190px;
+        min-height:130px;
         background:linear-gradient(180deg, rgba(247,227,234,0.98), rgba(255,255,255,0.78));
         border:1px solid rgba(109,69,87,0.12);
         border-radius:18px;
         box-shadow:0 12px 26px rgba(176,115,145,0.08);
-        padding:16px 16px 12px;
+        padding:14px 12px 10px;
         position:relative;
         overflow:hidden;
-        transition:all .25s ease;
+        transition:all .22s ease;
       }
 
       .menu-card::before,
@@ -93,44 +94,45 @@
 
       .menu-card:hover,
       .menu-card.active{
-        transform:translateY(-4px);
+        transform:translateY(-3px);
         box-shadow:0 18px 30px rgba(176,115,145,0.14);
         background:linear-gradient(180deg, rgba(247,218,232,0.98), rgba(255,255,255,0.82));
       }
 
       .menu-label{
-        font-size:0.7rem;
+        font-size:0.68rem;
         letter-spacing:0.17em;
         text-transform:uppercase;
         color:rgba(109,69,87,0.8);
         font-weight:800;
-        margin-bottom:10px;
+        margin-bottom:8px;
       }
 
       .menu-title{
         font-family:"Cormorant Garamond",serif;
         font-weight:700;
         color:var(--text);
-        line-height:0.9;
-        font-size:clamp(2.2rem, 2vw, 3.8rem);
+        line-height:0.92;
+        font-size:clamp(2rem, 2vw, 3.2rem);
       }
 
       .chapter{
         position:relative;
-        min-height:100vh;
+        min-height:78vh;
         overflow:hidden;
         background:
           radial-gradient(circle at 20% 15%, rgba(244,196,214,0.26), transparent 25%),
           radial-gradient(circle at 80% 70%, rgba(209,178,201,0.18), transparent 20%),
           linear-gradient(180deg, rgba(255,251,253,0.96) 0%, rgba(249,239,244,0.96) 100%);
         border-top:1px solid rgba(109,69,87,0.04);
+        padding:24px 0;
       }
 
       .chapter-inner{
         position:relative;
         z-index:2;
-        width:min(1450px, 92%);
-        min-height:100vh;
+        width:min(1360px, 92%);
+        min-height:70vh;
         margin:0 auto;
         display:flex;
         align-items:center;
@@ -138,7 +140,7 @@
       }
 
       .chapter-content{
-        width:min(1200px,100%);
+        width:min(1100px,100%);
         opacity:0;
         transform:translateY(18px);
         transition:opacity .7s ease, transform .7s ease;
@@ -160,17 +162,17 @@
       }
 
       .chapter-title.main{
-        font-size:clamp(3.6rem, 7vw, 11rem);
+        font-size:clamp(3.2rem, 6vw, 9rem);
         text-align:center;
       }
 
       .text-block{
         font-family:"Cormorant Garamond",serif;
-        font-size:clamp(1.8rem, 2.2vw, 3.05rem);
+        font-size:clamp(1.7rem, 2vw, 2.8rem);
         line-height:1.38;
         color:var(--text);
         text-align:center;
-        max-width:1100px;
+        max-width:1000px;
         margin:0 auto;
       }
 
@@ -189,7 +191,7 @@
       .pizarra-text{
         display:block;
         font-family:"Cormorant Garamond",serif;
-        font-size:clamp(2rem,2.6vw,3.5rem);
+        font-size:clamp(1.9rem,2.4vw,3.2rem);
         font-weight:700;
         color:var(--text);
       }
@@ -197,13 +199,13 @@
       .soft-box{
         display:inline-block;
         background:linear-gradient(180deg, rgba(247,219,232,0.95), rgba(255,255,255,0.75));
-        padding:18px 24px;
+        padding:16px 20px;
         border-radius:16px;
         box-shadow:0 14px 22px rgba(176,115,145,0.08);
       }
 
       .soft-box .chapter-title{
-        font-size:clamp(2.2rem, 3vw, 4.2rem);
+        font-size:clamp(2rem, 3vw, 3.8rem);
         margin:0;
       }
 
@@ -211,19 +213,19 @@
         background:rgba(247,229,236,0.92);
         border:1px solid rgba(109,69,87,0.08);
         border-radius:20px;
-        padding:34px 28px;
+        padding:30px 26px;
         box-shadow:0 18px 28px rgba(176,115,145,0.08);
       }
 
       .panel .chapter-title{
-        font-size:clamp(2.5rem, 4vw, 5rem);
+        font-size:clamp(2.3rem, 4vw, 4.6rem);
         text-align:left;
       }
 
       .grid-2{
         display:grid;
         grid-template-columns:1.1fr 1fr;
-        gap:40px;
+        gap:34px;
         align-items:center;
       }
 
@@ -234,21 +236,21 @@
 
       .blob{
         left:-90px; top:-90px;
-        width:260px; height:210px;
+        width:220px; height:180px;
         background:rgba(218,161,183,0.22);
         border-radius:62% 38% 52% 48%;
       }
 
       .blob-2{
         right:-110px; bottom:-90px;
-        width:300px; height:220px;
+        width:260px; height:200px;
         background:rgba(218,161,183,0.18);
         border-radius:58% 42% 56% 44%;
       }
 
       .curve{
         right:90px; top:35px;
-        width:200px; height:90px;
+        width:180px; height:80px;
         border:4px solid var(--rose-2);
         border-color:transparent transparent var(--rose-2) transparent;
         border-radius:50%;
@@ -257,7 +259,7 @@
 
       .semi{
         left:25px; bottom:60px;
-        width:110px; height:64px;
+        width:100px; height:56px;
         border-radius:120px 120px 0 0;
         border:4px solid var(--rose-2);
         border-color:var(--rose-2) transparent transparent transparent;
@@ -265,7 +267,7 @@
       }
 
       .heart{
-        width:36px; height:36px;
+        width:32px; height:32px;
         background:var(--pink-4);
         transform:rotate(-45deg);
         border-radius:8px 0 0 0;
@@ -275,12 +277,12 @@
       .heart::before, .heart::after{
         content:"";
         position:absolute;
-        width:36px; height:36px;
+        width:32px; height:32px;
         background:var(--pink-4);
         border-radius:50%;
       }
-      .heart::before{ left:0; top:-18px; }
-      .heart::after{ left:18px; top:0; }
+      .heart::before{ left:0; top:-16px; }
+      .heart::after{ left:16px; top:0; }
 
       .heart.a{ left:120px; top:110px; }
       .heart.b{ left:260px; top:260px; }
@@ -289,7 +291,7 @@
       .heart.e{ right:180px; bottom:110px; }
 
       .star{
-        width:18px; height:18px;
+        width:16px; height:16px;
         background:rgba(109,69,87,0.75);
         clip-path:polygon(50% 0%,61% 35%,100% 35%,68% 57%,79% 100%,50% 72%,21% 100%,32% 57%,0% 35%,39% 35%);
         animation: twinkle 3s ease-in-out infinite;
@@ -302,8 +304,8 @@
 
       .mini-book{
         position:absolute;
-        right:60px; bottom:48px;
-        width:120px; height:90px;
+        right:52px; bottom:38px;
+        width:110px; height:82px;
         border:4px solid var(--rose-2);
         border-radius:12px;
         transform:rotate(5deg);
@@ -313,8 +315,8 @@
         content:"";
         position:absolute;
         top:8px;
-        width:18px;
-        height:66px;
+        width:16px;
+        height:60px;
         border:4px solid var(--rose-2);
         border-radius:12px;
       }
@@ -325,8 +327,8 @@
         position:absolute;
         left:70px;
         bottom:52px;
-        width:110px;
-        height:80px;
+        width:102px;
+        height:74px;
         border:4px solid var(--rose-2);
         border-radius:12px;
         transform:rotate(-5deg);
@@ -336,8 +338,8 @@
         content:"";
         position:absolute;
         top:8px;
-        width:18px;
-        height:64px;
+        width:16px;
+        height:58px;
         border:4px solid var(--rose-2);
         border-radius:12px;
       }
@@ -352,7 +354,7 @@
 
       .pie-chart{
         position:relative;
-        width:430px; height:430px;
+        width:360px; height:360px;
         border-radius:50%;
         background:conic-gradient(#d08ea8 0 25%, #ba738f 25% 100%);
         box-shadow:0 20px 32px rgba(169,121,143,0.12);
@@ -363,11 +365,11 @@
         display:flex; align-items:center; justify-content:center;
         color:white;
         font-family:"Cormorant Garamond",serif;
-        font-size:clamp(3rem,4vw,5rem);
+        font-size:clamp(2.5rem,3.5vw,4.3rem);
         font-weight:700;
       }
       .pie-chart .val strong{
-        font-size:clamp(3.3rem,5vw,6rem);
+        font-size:clamp(3rem,4.5vw,5.2rem);
       }
 
       .final-hero{
@@ -380,14 +382,14 @@
 
       .illustration{
         position:relative;
-        width:330px; height:220px;
+        width:300px; height:190px;
         margin:20px auto 26px;
         animation: floatCard 5s ease-in-out infinite;
       }
 
       .illustration .head{
         position:absolute; left:50%; top:10px;
-        width:88px; height:88px;
+        width:80px; height:80px;
         border-radius:50%;
         border:4px solid var(--rose-2);
         transform:translateX(-50%);
@@ -396,7 +398,7 @@
 
       .illustration .body{
         position:absolute; left:50%; bottom:18px;
-        width:180px; height:130px;
+        width:170px; height:110px;
         border:4px solid var(--rose-2);
         transform:translateX(-50%);
         border-radius:24px 24px 12px 12px;
@@ -405,7 +407,7 @@
 
       .illustration .book{
         position:absolute; left:50%; bottom:10px;
-        width:150px; height:90px;
+        width:135px; height:80px;
         transform:translateX(-50%);
         border:4px solid var(--rose-2);
         border-radius:18px;
@@ -415,7 +417,7 @@
         content:"";
         position:absolute;
         top:10px;
-        width:18px; height:64px;
+        width:16px; height:56px;
         border:4px solid var(--rose-2);
         border-radius:12px;
       }
@@ -424,7 +426,7 @@
 
       .heart-mini{
         position:absolute;
-        width:38px; height:38px;
+        width:34px; height:34px;
         background:var(--pink-4);
         transform:rotate(-45deg);
         border-radius:8px 0 0 0;
@@ -434,15 +436,15 @@
       .heart-mini::before, .heart-mini::after{
         content:"";
         position:absolute;
-        width:38px; height:38px;
+        width:34px; height:34px;
         background:var(--pink-4);
         border-radius:50%;
       }
-      .heart-mini::before{ left:0; top:-18px; }
-      .heart-mini::after{ left:18px; top:0; }
+      .heart-mini::before{ left:0; top:-17px; }
+      .heart-mini::after{ left:17px; top:0; }
 
-      .heart-mini.a{ left:145px; top:120px; }
-      .heart-mini.b{ right:145px; top:120px; }
+      .heart-mini.a{ left:130px; top:100px; }
+      .heart-mini.b{ right:130px; top:100px; }
 
       .last-title{
         font-family:"Cormorant Garamond",serif;
@@ -450,45 +452,45 @@
         color:var(--text);
         letter-spacing:-0.05em;
         line-height:0.9;
-        font-size:clamp(4.2rem, 9vw, 12rem);
+        font-size:clamp(3.8rem, 8vw, 10rem);
         text-transform:uppercase;
         text-shadow:0 12px 28px rgba(152,98,120,0.08);
       }
 
       .letter-wrap{
-        width:min(1100px, 90%);
+        width:min(980px, 90%);
         margin:0 auto;
         background:linear-gradient(180deg, rgba(255,255,255,0.55), rgba(249,239,243,0.82));
         border:1px solid rgba(109,69,87,0.08);
         border-radius:26px;
-        padding:52px 42px;
+        padding:42px 32px;
         box-shadow:0 18px 36px rgba(152,98,120,0.08);
       }
 
       .letter-head{
         text-align:center;
         font-family:"Cormorant Garamond",serif;
-        font-size:clamp(2.4rem, 4vw, 5rem);
+        font-size:clamp(2.2rem, 4vw, 4.6rem);
         color:var(--text);
         font-weight:700;
-        margin-bottom:28px;
+        margin-bottom:24px;
       }
 
       .letter{
         font-family:"Cormorant Garamond",serif;
-        font-size:clamp(1.8rem, 2.2vw, 2.9rem);
+        font-size:clamp(1.7rem, 2vw, 2.6rem);
         line-height:1.45;
         color:var(--text);
         text-align:left;
       }
 
       .letter p{
-        margin-bottom:18px;
+        margin-bottom:16px;
       }
 
       .letter .signature{
         text-align:right;
-        margin-top:26px;
+        margin-top:24px;
         font-weight:700;
       }
 
@@ -508,18 +510,19 @@
       }
 
       @media (max-width:1100px){
-        .menu-grid{ grid-template-columns:repeat(3,minmax(170px,1fr)); }
+        .menu-grid{ grid-template-columns:repeat(3,minmax(150px,1fr)); }
       }
 
       @media (max-width:820px){
-        .menu-grid{ grid-template-columns:repeat(2,minmax(170px,1fr)); }
+        .menu-grid{ grid-template-columns:repeat(2,minmax(140px,1fr)); }
         .grid-2{ grid-template-columns:1fr; }
         .chapter-inner{ width:min(92%,1100px); }
+        .chapter{ min-height:88vh; }
       }
 
       @media (max-width:560px){
         .menu-grid{ grid-template-columns:1fr; }
-        .letter-wrap{ padding:28px 20px; }
+        .letter-wrap{ padding:28px 18px; }
       }
     </style>
   </head>
@@ -528,72 +531,24 @@
       <nav class="top-menu">
         <div class="menu-wrap">
           <div class="menu-grid">
-            <a href="#cap1" class="menu-card active">
-              <div class="menu-label">Capítulo 1</div>
-              <div class="menu-title">Tu en cada página</div>
-            </a>
-            <a href="#cap2" class="menu-card">
-              <div class="menu-label">Capítulo 2</div>
-              <div class="menu-title">Tu corazón</div>
-            </a>
-            <a href="#cap3" class="menu-card">
-              <div class="menu-label">Capítulo 3</div>
-              <div class="menu-title">Cómo empezó</div>
-            </a>
-            <a href="#cap4" class="menu-card">
-              <div class="menu-label">Capítulo 4</div>
-              <div class="menu-title">Este tiempo</div>
-            </a>
-            <a href="#cap5" class="menu-card">
-              <div class="menu-label">Capítulo 5</div>
-              <div class="menu-title">Cada momento</div>
-            </a>
-            <a href="#cap6" class="menu-card">
-              <div class="menu-label">Capítulo 6</div>
-              <div class="menu-title">Significas</div>
-            </a>
+            <a href="#cap1" class="menu-card active"><div class="menu-label">Capítulo 1</div><div class="menu-title">Tu en cada página</div></a>
+            <a href="#cap2" class="menu-card"><div class="menu-label">Capítulo 2</div><div class="menu-title">Tu corazón</div></a>
+            <a href="#cap3" class="menu-card"><div class="menu-label">Capítulo 3</div><div class="menu-title">Cómo empezó</div></a>
+            <a href="#cap4" class="menu-card"><div class="menu-label">Capítulo 4</div><div class="menu-title">Este tiempo</div></a>
+            <a href="#cap5" class="menu-card"><div class="menu-label">Capítulo 5</div><div class="menu-title">Cada momento</div></a>
+            <a href="#cap6" class="menu-card"><div class="menu-label">Capítulo 6</div><div class="menu-title">Significas</div></a>
 
-            <a href="#cap7" class="menu-card">
-              <div class="menu-label">Capítulo 7</div>
-              <div class="menu-title">Motivación</div>
-            </a>
-            <a href="#cap8" class="menu-card">
-              <div class="menu-label">Capítulo 8</div>
-              <div class="menu-title">Flores</div>
-            </a>
-            <a href="#cap9" class="menu-card">
-              <div class="menu-label">Capítulo 9</div>
-              <div class="menu-title">Viaje</div>
-            </a>
-            <a href="#cap10" class="menu-card">
-              <div class="menu-label">Capítulo 10</div>
-              <div class="menu-title">Contigo</div>
-            </a>
-            <a href="#cap11" class="menu-card">
-              <div class="menu-label">Capítulo 11</div>
-              <div class="menu-title">Afortunado</div>
-            </a>
-            <a href="#cap12" class="menu-card">
-              <div class="menu-label">Capítulo 12</div>
-              <div class="menu-title">Tus padres</div>
-            </a>
+            <a href="#cap7" class="menu-card"><div class="menu-label">Capítulo 7</div><div class="menu-title">Motivación</div></a>
+            <a href="#cap8" class="menu-card"><div class="menu-label">Capítulo 8</div><div class="menu-title">Flores</div></a>
+            <a href="#cap9" class="menu-card"><div class="menu-label">Capítulo 9</div><div class="menu-title">Viaje</div></a>
+            <a href="#cap10" class="menu-card"><div class="menu-label">Capítulo 10</div><div class="menu-title">Contigo</div></a>
+            <a href="#cap11" class="menu-card"><div class="menu-label">Capítulo 11</div><div class="menu-title">Afortunado</div></a>
+            <a href="#cap12" class="menu-card"><div class="menu-label">Capítulo 12</div><div class="menu-title">Tus padres</div></a>
 
-            <a href="#cap13" class="menu-card">
-              <div class="menu-label">Capítulo 13</div>
-              <div class="menu-title">Fin EP.1</div>
-            </a>
-            <a href="#cap14" class="menu-card">
-              <div class="menu-label">Capítulo 14</div>
-              <div class="menu-title">Tu cumple</div>
-            </a>
-            <a href="#cap15" class="menu-card">
-              <div class="menu-label">Capítulo 15</div>
-              <div class="menu-title">Te quiero</div>
-            </a>
-            <a href="#cap16" class="menu-card">
-              <div class="menu-label">Capítulo 16</div>
-              <div class="menu-title">Carta final</div>
-            </a>
+            <a href="#cap13" class="menu-card"><div class="menu-label">Capítulo 13</div><div class="menu-title">Fin EP.1</div></a>
+            <a href="#cap14" class="menu-card"><div class="menu-label">Capítulo 14</div><div class="menu-title">Tu cumple</div></a>
+            <a href="#cap15" class="menu-card"><div class="menu-label">Capítulo 15</div><div class="menu-title">Te quiero</div></a>
+            <a href="#cap16" class="menu-card"><div class="menu-label">Capítulo 16</div><div class="menu-title">Carta final</div></a>
           </div>
         </div>
       </nav>
